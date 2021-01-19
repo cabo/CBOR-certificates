@@ -83,12 +83,12 @@ Table of Contents
    4.  Compliance Requirements for Constrained IoT . . . . . . . . .  11
    5.  Legacy Considerations . . . . . . . . . . . . . . . . . . . .  11
    6.  Expected Certificate Sizes  . . . . . . . . . . . . . . . . .  12
-   7.  Natively Signed CBOR Certificates . . . . . . . . . . . . . .  13
+   7.  Natively Signed CBOR Certificates . . . . . . . . . . . . . .  12
    8.  Security Considerations . . . . . . . . . . . . . . . . . . .  13
-   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  14
+   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  13
      9.1.  CBOR Certificate Types Registry . . . . . . . . . . . . .  14
-     9.2.  CBOR Certificate Attributes Registry  . . . . . . . . . .  15
-     9.3.  CBOR Certificate Extensions Registry  . . . . . . . . . .  17
+     9.2.  CBOR Certificate Attributes Registry  . . . . . . . . . .  14
+     9.3.  CBOR Certificate Extensions Registry  . . . . . . . . . .  16
      9.4.  CBOR Extended Key Usages Registry . . . . . . . . . . . .  19
      9.5.  CBOR Certificate General Names Registry . . . . . . . . .  20
      9.6.  CBOR Certificate Signature Algorithms Registry  . . . . .  21
@@ -646,9 +646,7 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    reached with general compression mechanisms will be small, mainly
    corresponding to making the ASN.1 encoding more compact.  For Brtoli
    [RFC7932], the brotli command line tool 1.09 was used with the
-   following parameters.
-
-   brotli cert.der
+   default best compression level.
 
    +------------------+--------------+------------+--------------------+
    |                  |   RFC 7925   |   Brotli   |  CBOR Certificate  |
@@ -657,22 +655,6 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    +------------------+--------------+------------+--------------------+
 
              Figure 2: Comparing Sizes of Certificates (bytes)
-
-
-
-
-
-
-
-
-
-
-
-
-Raza, et al.              Expires 23 July 2021                 [Page 12]
-
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
-
 
 7.  Natively Signed CBOR Certificates
 
@@ -683,6 +665,14 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    base64 encodings which reduces the processing in the authenticating
    devices, and avoids known complexities and security issues with these
    encodings.
+
+
+
+
+Raza, et al.              Expires 23 July 2021                 [Page 12]
+
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+
 
    Natively signed CBOR certificates can be applied in devices that are
    only required to authenticate to natively signed CBOR certificate
@@ -722,14 +712,6 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    solution described in Section 5 requires unencrypted certificates and
    is not recommended.
 
-
-
-
-Raza, et al.              Expires 23 July 2021                 [Page 13]
-
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
-
-
 9.  IANA Considerations
 
    This document creates several new registries under the new heading
@@ -740,6 +722,14 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    expected to ensure that the usage solves a valid use case that could
    not be solved better in a different way, that it is not going to
    duplicate one that is already registered, and that the registered
+
+
+
+Raza, et al.              Expires 23 July 2021                 [Page 13]
+
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+
+
    point is likely to be used in deployments.  They are furthermore
    expected to check the clarity of purpose and use of the requested
    code points.  Experts should take into account the expected usage of
@@ -771,21 +761,6 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
                       Figure 3: CBOR Certificate Types
 
-
-
-
-
-
-
-
-
-
-
-Raza, et al.              Expires 23 July 2021                 [Page 14]
-
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
-
-
 9.2.  CBOR Certificate Attributes Registry
 
    IANA has created a new registry titled "CBOR Certificate Attributes"
@@ -803,6 +778,14 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    |     1 | Name:            Common Name                              |
    |       | OID:             2.5.4.3                                  |
    |       | DER:             06 03 55 04 03                           |
+
+
+
+Raza, et al.              Expires 23 July 2021                 [Page 14]
+
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+
+
    |       | Comments:                                                 |
    +-------+-----------------------------------------------------------+
    |     2 | Name:            Surname                                  |
@@ -834,14 +817,6 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    |       | OID:             2.5.4.9                                  |
    |       | DER:             06 03 55 04 09                           |
    |       | Comments:                                                 |
-
-
-
-Raza, et al.              Expires 23 July 2021                 [Page 15]
-
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
-
-
    +-------+-----------------------------------------------------------+
    |     8 | Name:            Organization                             |
    |       | OID:             2.5.4.10                                 |
@@ -859,6 +834,14 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    |       | Comments:                                                 |
    +-------+-----------------------------------------------------------+
    |    11 | Name:            Postal Code                              |
+
+
+
+Raza, et al.              Expires 23 July 2021                 [Page 15]
+
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+
+
    |       | OID:             2.5.4.17                                 |
    |       | DER:             06 03 55 04 11                           |
    |       | Comments:                                                 |
@@ -890,14 +873,6 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    +-------+-----------------------------------------------------------+
    |    17 | Name:            Organization Identifier                  |
    |       | OID:             2.5.4.97                                 |
-
-
-
-Raza, et al.              Expires 23 July 2021                 [Page 16]
-
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
-
-
    |       | DER:             06 03 55 04 61                           |
    |       | Comments:                                                 |
    +-------+-----------------------------------------------------------+
@@ -914,6 +889,14 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    the interval [0, 23] the registration procedure is "IETF Review" and
    "Expert Review".  For all other values the registration procedure is
    "Expert Review".  The initial contents of the registry are:
+
+
+
+
+Raza, et al.              Expires 23 July 2021                 [Page 16]
+
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+
 
    +-------+-----------------------------------------------------------+
    | Value | Extension                                                |
@@ -946,14 +929,6 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    |       | OID:             2.5.29.31                                |
    |       | DER:             06 03 55 1D 1F                           |
    |       | Comments:                                                 |
-
-
-
-Raza, et al.              Expires 23 July 2021                 [Page 17]
-
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
-
-
    |       | extensionValue:  [ + ( int, any ) ] / text                |
    +-------+-----------------------------------------------------------+
    |     5 | Name:            Certificate Policies                     |
@@ -971,6 +946,14 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    |     7 | Name:            Extended Key Usage                       |
    |       | OID:             2.5.29.37                                |
    |       | DER:             06 03 55 1D 25                           |
+
+
+
+Raza, et al.              Expires 23 July 2021                 [Page 17]
+
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+
+
    |       | Comments:                                                 |
    |       | extensionValue:  int                                      |
    +-------+-----------------------------------------------------------+
@@ -1002,14 +985,6 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    |    26 | Name:            Name Constraints                         |
    |       | OID:             2.5.29.30                                |
    |       | DER:             06 03 55 1D 1E                           |
-
-
-
-Raza, et al.              Expires 23 July 2021                 [Page 18]
-
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
-
-
    |       | Comments:                                                 |
    |       | extensionValue:  bytes                                    |
    +-------+-----------------------------------------------------------+
@@ -1027,6 +1002,14 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    +-------+-----------------------------------------------------------+
    |    29 | Name:            Freshest CRL                             |
    |       | OID:             2.5.29.46                                |
+
+
+
+Raza, et al.              Expires 23 July 2021                 [Page 18]
+
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+
+
    |       | DER:             06 03 55 1D 2E                           |
    |       | Comments:                                                 |
    |       | extensionValue:  bytes                                    |
@@ -1056,6 +1039,23 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    Review" and "Expert Review".  For all other values the registration
    procedure is "Expert Review".  The initial contents of the registry
    are:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
