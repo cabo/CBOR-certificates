@@ -161,7 +161,7 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    with, e.g., TLS [RFC8446], QUIC [I-D.ietf-quic-transport], DTLS
    [I-D.ietf-tls-dtls13], COSE [RFC8152], EDHOC [I-D.ietf-lake-edhoc],
    or Compact TLS 1.3 [I-D.ietf-tls-ctls].  RFC 7925 [RFC7925],
-   RFC7925bis I-D.ietf-uta-tls13-iot-profile}}, and IEEE 802.1AR
+   RFC7925bis [I-D.ietf-uta-tls13-iot-profile], and IEEE 802.1AR
 
 
 
