@@ -5,12 +5,12 @@
 Network Working Group                                            S. Raza
 Internet-Draft                                                J. Höglund
 Intended status: Standards Track                                 RISE AB
-Expires: 27 July 2021                                        G. Selander
+Expires: 15 August 2021                                      G. Selander
                                                              J. Mattsson
                                                              Ericsson AB
                                                               M. Furuhed
                                                              Nexus Group
-                                                         23 January 2021
+                                                        11 February 2021
 
 
         CBOR Encoding of X.509 Certificates (CBOR Certificates)
@@ -46,16 +46,16 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 July 2021.
+   This Internet-Draft will expire on 15 August 2021.
 
 
 
 
 
 
-Raza, et al.              Expires 27 July 2021                  [Page 1]
+Raza, et al.             Expires 15 August 2021                 [Page 1]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Raza, et al.              Expires 27 July 2021                  [Page 2]
+Raza, et al.             Expires 15 August 2021                 [Page 2]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
 1.  Introduction
@@ -165,9 +165,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                  [Page 3]
+Raza, et al.             Expires 15 August 2021                 [Page 3]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    [IEEE-802.1AR] specifically target Internet of Things deployments.
@@ -221,9 +221,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                  [Page 4]
+Raza, et al.             Expires 15 August 2021                 [Page 4]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    signed CBOR certificate, in which case the signature is calculated
@@ -277,9 +277,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                  [Page 5]
+Raza, et al.             Expires 15 August 2021                 [Page 5]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
       74 character subset of ASCII allowed by PrintableString and
@@ -333,9 +333,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                  [Page 6]
+Raza, et al.             Expires 15 August 2021                 [Page 6]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
       The extensions mandated to be supported by [RFC7925] and
@@ -389,9 +389,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                  [Page 7]
+Raza, et al.             Expires 15 August 2021                 [Page 7]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
 ; The elements of the following group are to be used in a CBOR Sequence:
@@ -445,9 +445,9 @@ Extension = ( extensionID: int, extensionValue: any ) //
 
 
 
-Raza, et al.              Expires 27 July 2021                  [Page 8]
+Raza, et al.             Expires 15 August 2021                 [Page 8]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
 3.2.1.  Encoding of subjectPublicKey
@@ -501,9 +501,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                  [Page 9]
+Raza, et al.             Expires 15 August 2021                 [Page 9]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
       encoded as a CBOR text string.  In addition to the general names
@@ -557,9 +557,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 10]
+Raza, et al.             Expires 15 August 2021                [Page 10]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
 3.3.1.  Example Encoding of Extensions
@@ -613,9 +613,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 11]
+Raza, et al.             Expires 15 August 2021                [Page 11]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    For protocols like TLS/DTLS 1.2, where the handshake is sent
@@ -669,9 +669,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 12]
+Raza, et al.             Expires 15 August 2021                [Page 12]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
 7.  Natively Signed CBOR Certificates
@@ -725,9 +725,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 13]
+Raza, et al.             Expires 15 August 2021                [Page 13]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
 9.  IANA Considerations
@@ -781,9 +781,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 14]
+Raza, et al.             Expires 15 August 2021                [Page 14]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
 9.2.  CBOR Certificate Attributes Registry
@@ -837,9 +837,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 15]
+Raza, et al.             Expires 15 August 2021                [Page 15]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    +-------+-----------------------------------------------------------+
@@ -893,9 +893,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 16]
+Raza, et al.             Expires 15 August 2021                [Page 16]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    |       | DER:             06 03 55 04 61                           |
@@ -949,9 +949,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 17]
+Raza, et al.             Expires 15 August 2021                [Page 17]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    |       | extensionValue:  [ + ( int, any ) ] / text                |
@@ -1005,9 +1005,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 18]
+Raza, et al.             Expires 15 August 2021                [Page 18]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    |       | Comments:                                                 |
@@ -1061,9 +1061,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 19]
+Raza, et al.             Expires 15 August 2021                [Page 19]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    +-------+-----------------------------------------------------------+
@@ -1117,9 +1117,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 20]
+Raza, et al.             Expires 15 August 2021                [Page 20]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    +-------+-----------------------------------------------------------+
@@ -1173,9 +1173,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 21]
+Raza, et al.             Expires 15 August 2021                [Page 21]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    +-------+-----------------------------------------------------------+
@@ -1229,9 +1229,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 22]
+Raza, et al.             Expires 15 August 2021                [Page 22]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    |       | DER:         30 05 06 03 2B 65 70                         |
@@ -1285,9 +1285,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 23]
+Raza, et al.             Expires 15 August 2021                [Page 23]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    |       | OID:         1.2.840.113549.1.1.10                        |
@@ -1341,9 +1341,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 24]
+Raza, et al.             Expires 15 August 2021                [Page 24]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
 9.7.  CBOR Certificate Public Key Algorithms Registry
@@ -1397,9 +1397,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 25]
+Raza, et al.             Expires 15 August 2021                [Page 25]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    |       | OID:         1.3.101.111                                  |
@@ -1453,9 +1453,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 26]
+Raza, et al.             Expires 15 August 2021                [Page 26]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    instead of DER encoded, uses a COSE_C5 structure instead of
@@ -1488,9 +1488,11 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    | c5c       |  TBD2 | COSE_C5        | An ordered chain of CBOR     |
    |           |       |                | certificates                 |
    +-----------+-------+----------------+------------------------------+
-   | c5t       |  TBD3 | COSE_CertHash  | Hash of a CBORCertificate    |
+   | c5t       |  TBD3 | COSE_CertHash  | Hash of a CBOR certificate   |
    +-----------+-------+----------------+------------------------------+
    | c5u       |  TBD4 | uri            | URI pointing to a COSE_C5    |
+   |           |       |                | containing a ordered chain   |
+   |           |       |                | of certificates              |
    +-----------+-------+----------------+------------------------------+
 
 9.9.  TLS Certificate Types Registry
@@ -1507,11 +1509,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-
-
-Raza, et al.              Expires 27 July 2021                 [Page 27]
+Raza, et al.             Expires 15 August 2021                [Page 27]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    +-------+------------------+-------------+--------------------------+
@@ -1530,7 +1530,7 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    |  Tag | X.509 Public Key Algorithms                                |
    +======+============================================================+
    | TDB6 | Data Item: COSE_C5                                         |
-   |      | Semantics:                                                 |
+   |      | Semantics: An ordered chain of CBOR certificates           |
    |      | Reference: This document                                   |
    +------+------------------------------------------------------------+
 
@@ -1541,9 +1541,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
    [I-D.ietf-cbor-tags-oid]
               Bormann, C. and S. Leonard, "Concise Binary Object
               Representation (CBOR) Tags for Object Identifiers", Work
-              in Progress, Internet-Draft, draft-ietf-cbor-tags-oid-03,
-              17 November 2020, <http://www.ietf.org/internet-drafts/
-              draft-ietf-cbor-tags-oid-03.txt>.
+              in Progress, Internet-Draft, draft-ietf-cbor-tags-oid-04,
+              26 January 2021, <http://www.ietf.org/internet-drafts/
+              draft-ietf-cbor-tags-oid-04.txt>.
 
    [I-D.ietf-cose-x509]
               Schaad, J., "CBOR Object Signing and Encryption (COSE):
@@ -1565,9 +1565,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 28]
+Raza, et al.             Expires 15 August 2021                [Page 28]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    [RFC5280]  Cooper, D., Santesson, S., Farrell, S., Boeyen, S.,
@@ -1621,9 +1621,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 29]
+Raza, et al.             Expires 15 August 2021                [Page 29]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    [I-D.ietf-emu-eaptlscert]
@@ -1677,9 +1677,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 30]
+Raza, et al.             Expires 15 August 2021                [Page 30]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    [RFC7228]  Bormann, C., Ersue, M., and A. Keranen, "Terminology for
@@ -1733,9 +1733,9 @@ A.1.  Example RFC 7925 profiled X.509 Certificate
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 31]
+Raza, et al.             Expires 15 August 2021                [Page 31]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    Certificate:
@@ -1789,9 +1789,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 32]
+Raza, et al.             Expires 15 August 2021                [Page 32]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
 A.1.1.  Example CBOR Certificate Encoding
@@ -1845,9 +1845,9 @@ A.1.2.  Example: Natively Signed CBOR Certificate
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 33]
+Raza, et al.             Expires 15 August 2021                [Page 33]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    /This defines a CBOR Sequence (RFC 8742):/
@@ -1901,9 +1901,9 @@ A.1.3.  Example: Additonal Keys for the Example Certificates
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 34]
+Raza, et al.             Expires 15 August 2021                [Page 34]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    issuerPublicKeyAlgorithm :
@@ -1957,9 +1957,9 @@ A.3.  Example CAB Baseline ECDSA HTTPS X.509 Certificate
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 35]
+Raza, et al.             Expires 15 August 2021                [Page 35]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    74 70 3a 2f 2f 63 72 6c 34 2e 64 69 67 69 63 65 72 74 2e 63 6f 6d 2f
@@ -2013,9 +2013,9 @@ A.3.1.  Example CBOR Certificate Encoding
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 36]
+Raza, et al.             Expires 15 August 2021                [Page 36]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
 /This defines a CBOR Sequence (RFC 8742):/
@@ -2069,9 +2069,9 @@ A.4.  Example CAB Baseline RSA HTTPS X.509 Certificate
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 37]
+Raza, et al.             Expires 15 August 2021                [Page 37]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    03 55 04 0b 13 2a 68 74 74 70 3a 2f 2f 63 65 72 74 73 2e 73 74 61 72
@@ -2125,9 +2125,9 @@ Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 38]
+Raza, et al.             Expires 15 August 2021                [Page 38]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
    da f2 52 7c e6 45 49 95 00 77 00 5c dc 43 92 fe e6 ab 45 44 b1 5e 9a
@@ -2181,9 +2181,9 @@ A.4.1.  Example CBOR Certificate Encoding
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 39]
+Raza, et al.             Expires 15 August 2021                [Page 39]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
 /This defines a CBOR Sequence (RFC 8742):/
@@ -2237,9 +2237,9 @@ h'14043FA0BED2EE3FA86E3A1F788EA04C35530F11061FFF60A16D0B83E9D92ADBB33F9DB3D7E059
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 40]
+Raza, et al.             Expires 15 August 2021                [Page 40]
 
-Internet-Draft  CBOR Encoding of X.509 Certificates (CBO    January 2021
+Internet-Draft  CBOR Encoding of X.509 Certificates (CBO   February 2021
 
 
 Acknowledgments
@@ -2293,4 +2293,4 @@ Authors' Addresses
 
 
 
-Raza, et al.              Expires 27 July 2021                 [Page 41]
+Raza, et al.             Expires 15 August 2021                [Page 41]
