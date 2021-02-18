@@ -31,6 +31,9 @@ Abstract
    also specifies COSE headers as well as a TLS certificate type for
    CXXX certificates.
 
+   NOTE: "CXXX" is a placeholder, name to be decided by the COSE WG if/
+   when the draft is adopted.
+
 Status of This Memo
 
    This Internet-Draft is submitted in full conformance with the
@@ -47,9 +50,6 @@ Status of This Memo
    material or to cite them other than as "work in progress."
 
    This Internet-Draft will expire on 22 August 2021.
-
-
-
 
 
 
