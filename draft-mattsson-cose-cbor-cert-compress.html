@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>CBOR Encoding of X.509 Certificates (CBOR Certificates)</title>
+<title>CBOR Encoding of X.509 Certificates (CXXX Certificates)</title>
 <meta content="Shahid Raza" name="author">
 <meta content="Joel Höglund" name="author">
 <meta content="Göran Selander" name="author">
 <meta content="John Preuß Mattsson" name="author">
 <meta content="Martin Furuhed" name="author">
 <meta content='
-       This document specifies a CBOR encoding of X.509 certificates. The resulting certificates are called CBOR Certificates. The CBOR encoding supports a large subset of RFC 5280 and significantly reduces the size of certificates compatible with e.g. RFC 7925, IEEE 802.1AR (DevID), CNSA, and CA/Browser Forum Baseline Requirements. When used to re-encode DER encoded X.509 certificates, the CBOR encoding can in many cases reduce the size of RFC 7925 profiled certificates with over 50%.  The CBOR encoding can also be used to encode "natively signed" CBOR certificates, which does not require re-encoding for the signature to be verified. The document also specifies COSE headers as well as a TLS certificate type for CBOR certificates. 
+       This document specifies a CBOR encoding of X.509 certificates. The resulting certificates are called CXXX Certificates. The CBOR encoding supports a large subset of RFC 5280 and significantly reduces the size of certificates compatible with e.g. RFC 7925, IEEE 802.1AR (DevID), CNSA, and CA/Browser Forum Baseline Requirements. When used to re-encode DER encoded X.509 certificates, the CBOR encoding can in many cases reduce the size of RFC 7925 profiled certificates with over 50%.  The CBOR encoded structure can alternatively be signed directly ("natively signed"), which does not require re-encoding for the signature to be verified. The document also specifies COSE headers as well as a TLS certificate type for CXXX certificates. 
     ' name="description">
 <meta content="xml2rfc 3.5.0" name="generator">
 <meta content="draft-mattsson-cose-cbor-cert-compress-latest" name="ietf.draft">
@@ -19,7 +19,7 @@
   xml2rfc 3.5.0
     Python 3.6.7
     appdirs 1.4.4
-    ConfigArgParse 1.2.3
+    ConfigArgParse 1.3
     google-i18n-address 2.4.0
     html5lib 1.1
     intervaltree 3.1.0
@@ -820,12 +820,12 @@ address div.right {
 <table class="ears">
 <thead><tr>
 <td class="left">Internet-Draft</td>
-<td class="center">CBOR Encoding of X.509 Certificates (CBO</td>
+<td class="center">CBOR Encoding of X.509 Certificates (CXX</td>
 <td class="right">February 2021</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Raza, et al.</td>
-<td class="center">Expires 17 August 2021</td>
+<td class="center">Expires 22 August 2021</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -838,12 +838,12 @@ address div.right {
 <dd class="internet-draft">draft-mattsson-cose-cbor-cert-compress-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-02-13" class="published">13 February 2021</time>
+<time datetime="2021-02-18" class="published">18 February 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2021-08-17">17 August 2021</time></dd>
+<dd class="expires"><time datetime="2021-08-22">22 August 2021</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -869,10 +869,10 @@ address div.right {
 </dd>
 </dl>
 </div>
-<h1 id="title">CBOR Encoding of X.509 Certificates (CBOR Certificates)</h1>
+<h1 id="title">CBOR Encoding of X.509 Certificates (CXXX Certificates)</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document specifies a CBOR encoding of X.509 certificates. The resulting certificates are called CBOR Certificates. The CBOR encoding supports a large subset of RFC 5280 and significantly reduces the size of certificates compatible with e.g. RFC 7925, IEEE 802.1AR (DevID), CNSA, and CA/Browser Forum Baseline Requirements. When used to re-encode DER encoded X.509 certificates, the CBOR encoding can in many cases reduce the size of RFC 7925 profiled certificates with over 50%.  The CBOR encoding can also be used to encode "natively signed" CBOR certificates, which does not require re-encoding for the signature to be verified. The document also specifies COSE headers as well as a TLS certificate type for CBOR certificates.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document specifies a CBOR encoding of X.509 certificates. The resulting certificates are called CXXX Certificates. The CBOR encoding supports a large subset of RFC 5280 and significantly reduces the size of certificates compatible with e.g. RFC 7925, IEEE 802.1AR (DevID), CNSA, and CA/Browser Forum Baseline Requirements. When used to re-encode DER encoded X.509 certificates, the CBOR encoding can in many cases reduce the size of RFC 7925 profiled certificates with over 50%.  The CBOR encoded structure can alternatively be signed directly ("natively signed"), which does not require re-encoding for the signature to be verified. The document also specifies COSE headers as well as a TLS certificate type for CXXX certificates.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -893,7 +893,7 @@ address div.right {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 17 August 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 August 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -921,110 +921,107 @@ address div.right {
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="toc compact ulEmpty">
-<li class="toc compact ulEmpty" id="section-toc.1-1.1">
+<nav class="toc"><ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a><a href="#section-toc.1-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.2">
+          <li class="ulEmpty compact toc" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="xref">2</a>.  <a href="#name-notational-conventions" class="xref">Notational Conventions</a><a href="#section-toc.1-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.3">
+          <li class="ulEmpty compact toc" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-cbor-encoding" class="xref">CBOR Encoding</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
-<ul class="toc compact ulEmpty">
-<li class="toc compact ulEmpty" id="section-toc.1-1.3.2.1">
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.3.2.1">
                 <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-message-fields" class="xref">Message Fields</a><a href="#section-toc.1-1.3.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.3.2.2">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.3.2.2">
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-encoding-of-subjectpublicke" class="xref">Encoding of subjectPublicKey and issuerSingatureValue</a><a href="#section-toc.1-1.3.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.3.2.3">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.3.2.3">
                 <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-encoding-of-extensions" class="xref">Encoding of Extensions</a><a href="#section-toc.1-1.3.2.3.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.4">
+          <li class="ulEmpty compact toc" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-compliance-requirements-for" class="xref">Compliance Requirements for Constrained IoT</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.5">
+          <li class="ulEmpty compact toc" id="section-toc.1-1.5">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-legacy-considerations" class="xref">Legacy Considerations</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.6">
+          <li class="ulEmpty compact toc" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-expected-certificate-sizes" class="xref">Expected Certificate Sizes</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-natively-signed-cbor-certif" class="xref">Natively Signed CBOR Certificates</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="xref">8.1</a>.  <a href="#name-cxxx-certificate-types-regi" class="xref">CXXX Certificate Types Registry</a><a href="#section-toc.1-1.8.2.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
-<ul class="toc compact ulEmpty">
-<li class="toc compact ulEmpty" id="section-toc.1-1.9.2.1">
-                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="xref">9.1</a>.  <a href="#name-cbor-certificate-types-regi" class="xref">CBOR Certificate Types Registry</a><a href="#section-toc.1-1.9.2.1.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="xref">8.2</a>.  <a href="#name-cxxx-certificate-attributes" class="xref">CXXX Certificate Attributes Registry</a><a href="#section-toc.1-1.8.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.9.2.2">
-                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="xref">9.2</a>.  <a href="#name-cbor-certificate-attributes" class="xref">CBOR Certificate Attributes Registry</a><a href="#section-toc.1-1.9.2.2.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.8.2.3">
+                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="xref">8.3</a>.  <a href="#name-cxxx-certificate-extensions" class="xref">CXXX Certificate Extensions Registry</a><a href="#section-toc.1-1.8.2.3.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.9.2.3">
-                <p id="section-toc.1-1.9.2.3.1"><a href="#section-9.3" class="xref">9.3</a>.  <a href="#name-cbor-certificate-extensions" class="xref">CBOR Certificate Extensions Registry</a><a href="#section-toc.1-1.9.2.3.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.8.2.4">
+                <p id="section-toc.1-1.8.2.4.1"><a href="#section-8.4" class="xref">8.4</a>.  <a href="#name-cxxx-certificate-extended-k" class="xref">CXXX Certificate Extended Key Usages Registry</a><a href="#section-toc.1-1.8.2.4.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.9.2.4">
-                <p id="section-toc.1-1.9.2.4.1"><a href="#section-9.4" class="xref">9.4</a>.  <a href="#name-cbor-extended-key-usages-re" class="xref">CBOR Extended Key Usages Registry</a><a href="#section-toc.1-1.9.2.4.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.8.2.5">
+                <p id="section-toc.1-1.8.2.5.1"><a href="#section-8.5" class="xref">8.5</a>.  <a href="#name-cxxx-certificate-general-na" class="xref">CXXX Certificate General Names Registry</a><a href="#section-toc.1-1.8.2.5.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.9.2.5">
-                <p id="section-toc.1-1.9.2.5.1"><a href="#section-9.5" class="xref">9.5</a>.  <a href="#name-cbor-certificate-general-na" class="xref">CBOR Certificate General Names Registry</a><a href="#section-toc.1-1.9.2.5.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.8.2.6">
+                <p id="section-toc.1-1.8.2.6.1"><a href="#section-8.6" class="xref">8.6</a>.  <a href="#name-cxxx-certificate-signature-" class="xref">CXXX Certificate Signature Algorithms Registry</a><a href="#section-toc.1-1.8.2.6.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.9.2.6">
-                <p id="section-toc.1-1.9.2.6.1"><a href="#section-9.6" class="xref">9.6</a>.  <a href="#name-cbor-certificate-signature-" class="xref">CBOR Certificate Signature Algorithms Registry</a><a href="#section-toc.1-1.9.2.6.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.8.2.7">
+                <p id="section-toc.1-1.8.2.7.1"><a href="#section-8.7" class="xref">8.7</a>.  <a href="#name-cxxx-certificate-public-key" class="xref">CXXX Certificate Public Key Algorithms Registry</a><a href="#section-toc.1-1.8.2.7.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.9.2.7">
-                <p id="section-toc.1-1.9.2.7.1"><a href="#section-9.7" class="xref">9.7</a>.  <a href="#name-cbor-certificate-public-key" class="xref">CBOR Certificate Public Key Algorithms Registry</a><a href="#section-toc.1-1.9.2.7.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.8.2.8">
+                <p id="section-toc.1-1.8.2.8.1"><a href="#section-8.8" class="xref">8.8</a>.  <a href="#name-cose-header-parameters-regi" class="xref">COSE Header Parameters Registry</a><a href="#section-toc.1-1.8.2.8.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.9.2.8">
-                <p id="section-toc.1-1.9.2.8.1"><a href="#section-9.8" class="xref">9.8</a>.  <a href="#name-cose-header-parameters-regi" class="xref">COSE Header Parameters Registry</a><a href="#section-toc.1-1.9.2.8.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.8.2.9">
+                <p id="section-toc.1-1.8.2.9.1"><a href="#section-8.9" class="xref">8.9</a>.  <a href="#name-tls-certificate-types-regis" class="xref">TLS Certificate Types Registry</a><a href="#section-toc.1-1.8.2.9.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.9.2.9">
-                <p id="section-toc.1-1.9.2.9.1"><a href="#section-9.9" class="xref">9.9</a>.  <a href="#name-tls-certificate-types-regis" class="xref">TLS Certificate Types Registry</a><a href="#section-toc.1-1.9.2.9.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.9.2.10">
-                <p id="section-toc.1-1.9.2.10.1"><a href="#section-9.10" class="xref">9.10</a>. <a href="#name-cbor-tags-registry" class="xref">CBOR Tags Registry</a><a href="#section-toc.1-1.9.2.10.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.8.2.10">
+                <p id="section-toc.1-1.8.2.10.1"><a href="#section-8.10" class="xref">8.10</a>. <a href="#name-cbor-tags-registry" class="xref">CBOR Tags Registry</a><a href="#section-toc.1-1.8.2.10.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-references" class="xref">References</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
-<ul class="toc compact ulEmpty">
-<li class="toc compact ulEmpty" id="section-toc.1-1.10.2.1">
-                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="xref">10.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a><a href="#section-toc.1-1.10.2.1.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-references" class="xref">References</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="xref">9.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a><a href="#section-toc.1-1.9.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.10.2.2">
-                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="xref">10.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a><a href="#section-toc.1-1.10.2.2.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-</li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-example-cbor-certificates" class="xref">Example CBOR Certificates</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
-<ul class="toc compact ulEmpty">
-<li class="toc compact ulEmpty" id="section-toc.1-1.11.2.1">
-                <p id="section-toc.1-1.11.2.1.1"><a href="#section-a.1" class="xref">A.1</a>.  <a href="#name-example-rfc-7925-profiled-x" class="xref">Example RFC 7925 profiled X.509 Certificate</a><a href="#section-toc.1-1.11.2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.11.2.2">
-                <p id="section-toc.1-1.11.2.2.1"><a href="#section-a.2" class="xref">A.2</a>.  <a href="#name-example-ieee-8021ar-profile" class="xref">Example IEEE 802.1AR profiled X.509 Certificate</a><a href="#section-toc.1-1.11.2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.11.2.3">
-                <p id="section-toc.1-1.11.2.3.1"><a href="#section-a.3" class="xref">A.3</a>.  <a href="#name-example-cab-baseline-ecdsa-" class="xref">Example CAB Baseline ECDSA HTTPS X.509 Certificate</a><a href="#section-toc.1-1.11.2.3.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.11.2.4">
-                <p id="section-toc.1-1.11.2.4.1"><a href="#section-a.4" class="xref">A.4</a>.  <a href="#name-example-cab-baseline-rsa-ht" class="xref">Example CAB Baseline RSA HTTPS X.509 Certificate</a><a href="#section-toc.1-1.11.2.4.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="xref">9.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a><a href="#section-toc.1-1.9.2.2.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#section-appendix.b" class="xref"></a><a href="#name-acknowledgments" class="xref">Acknowledgments</a><a href="#section-toc.1-1.12.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-example-cxxx-certificates" class="xref">Example CXXX Certificates</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-a.1" class="xref">A.1</a>.  <a href="#name-example-rfc-7925-profiled-x" class="xref">Example RFC 7925 profiled X.509 Certificate</a><a href="#section-toc.1-1.10.2.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#section-appendix.c" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a><a href="#section-toc.1-1.13.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-a.2" class="xref">A.2</a>.  <a href="#name-example-ieee-8021ar-profile" class="xref">Example IEEE 802.1AR profiled X.509 Certificate</a><a href="#section-toc.1-1.10.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.10.2.3">
+                <p id="section-toc.1-1.10.2.3.1"><a href="#section-a.3" class="xref">A.3</a>.  <a href="#name-example-cab-baseline-ecdsa-" class="xref">Example CAB Baseline ECDSA HTTPS X.509 Certificate</a><a href="#section-toc.1-1.10.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.10.2.4">
+                <p id="section-toc.1-1.10.2.4.1"><a href="#section-a.4" class="xref">A.4</a>.  <a href="#name-example-cab-baseline-rsa-ht" class="xref">Example CAB Baseline RSA HTTPS X.509 Certificate</a><a href="#section-toc.1-1.10.2.4.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</li>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-appendix.b" class="xref"></a><a href="#name-acknowledgments" class="xref">Acknowledgments</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#section-appendix.c" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a><a href="#section-toc.1-1.12.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </nav>
@@ -1038,14 +1035,15 @@ address div.right {
 <p id="section-1-1">One of the challenges with deploying a Public Key Infrastructure (PKI) for the Internet of Things (IoT) is the size and parsing of X.509 public key certificates <span>[<a href="#RFC5280" class="xref">RFC5280</a>]</span>, since those are not optimized for constrained environments <span>[<a href="#RFC7228" class="xref">RFC7228</a>]</span>. Large certificate chains are also problematic in non-constrained protocols such as EAP-TLS <span>[<a href="#I-D.ietf-emu-eap-tls13" class="xref">I-D.ietf-emu-eap-tls13</a>]</span> <span>[<a href="#I-D.ietf-emu-eaptlscert" class="xref">I-D.ietf-emu-eaptlscert</a>]</span> where authenticators typically drop an EAP session after only 40 - 50 round-trips and QUIC <span>[<a href="#I-D.ietf-quic-transport" class="xref">I-D.ietf-quic-transport</a>]</span> where the latency increases significantly unless the server only send less than three times as many bytes as received prior to validating the client address. More compact certificate representations are therefore desirable in many use cases. Due to the current PKI usage of DER encoded X.509 certificates, keeping compatibility with DER encoded X.509 is necessary at least for a transition period. However, the use of a more compact encoding with the Concise Binary Object Representation (CBOR) <span>[<a href="#RFC8949" class="xref">RFC8949</a>]</span> reduces the certificate size significantly which has known performance benefits in terms of decreased communication overhead, power consumption, latency, storage, etc.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">CBOR is a data format designed for small code size and small message size. CBOR builds on the JSON data model but extends it by e.g. encoding binary data directly without base64 conversion. In addition to the binary CBOR encoding, CBOR also has a diagnostic notation that is readable and editable by humans. The Concise Data Definition Language (CDDL) <span>[<a href="#RFC8610" class="xref">RFC8610</a>]</span> provides a way to express structures for protocol messages and APIs that use CBOR. <span>[<a href="#RFC8610" class="xref">RFC8610</a>]</span> also extends the diagnostic notation.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">CBOR data items are encoded to or decoded from byte strings using a type-length-value encoding scheme, where the three highest order bits of the initial byte contain information about the major type. CBOR supports several different types of data items, in addition to integers (int, uint), simple values (e.g. null), byte strings (bstr), and text strings (tstr), CBOR also supports arrays [] of data items, maps {} of pairs of data items, and sequences of data items. For a complete specification and examples, see <span>[<a href="#RFC8949" class="xref">RFC8949</a>]</span>, <span>[<a href="#RFC8610" class="xref">RFC8610</a>]</span>, and <span>[<a href="#RFC8742" class="xref">RFC8742</a>]</span>.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">CAB Baseline Requirements <span>[<a href="#CAB-Baseline" class="xref">CAB-Baseline</a>]</span>, RFC 7925 <span>[<a href="#RFC7925" class="xref">RFC7925</a>]</span>, IEEE 802.1AR <span>[<a href="#IEEE-802.1AR" class="xref">IEEE-802.1AR</a>]</span>, and CNSA <span>[<a href="#RFC8603" class="xref">RFC8603</a>]</span> specify certificate profiles which can be applied to certificate based authentication with, e.g., TLS <span>[<a href="#RFC8446" class="xref">RFC8446</a>]</span>, QUIC <span>[<a href="#I-D.ietf-quic-transport" class="xref">I-D.ietf-quic-transport</a>]</span>, DTLS <span>[<a href="#I-D.ietf-tls-dtls13" class="xref">I-D.ietf-tls-dtls13</a>]</span>, COSE <span>[<a href="#RFC8152" class="xref">RFC8152</a>]</span>, EDHOC <span>[<a href="#I-D.ietf-lake-edhoc" class="xref">I-D.ietf-lake-edhoc</a>]</span>, or Compact TLS 1.3 <span>[<a href="#I-D.ietf-tls-ctls" class="xref">I-D.ietf-tls-ctls</a>]</span>. RFC 7925 <span>[<a href="#RFC7925" class="xref">RFC7925</a>]</span>, RFC7925bis <span>[<a href="#I-D.ietf-uta-tls13-iot-profile" class="xref">I-D.ietf-uta-tls13-iot-profile</a>]</span>, and IEEE 802.1AR <span>[<a href="#IEEE-802.1AR" class="xref">IEEE-802.1AR</a>]</span> specifically target Internet of Things deployments. This document specifies a CBOR encoding based on <span>[<a href="#X.509-IoT" class="xref">X.509-IoT</a>]</span>, which can support large parts of <span>[<a href="#RFC5280" class="xref">RFC5280</a>]</span>. The encoding support all <span>[<a href="#RFC7925" class="xref">RFC7925</a>]</span> and IEEE 802.1AR <span>[<a href="#IEEE-802.1AR" class="xref">IEEE-802.1AR</a>]</span> and CAB Baseline <span>[<a href="#CAB-Baseline" class="xref">CAB-Baseline</a>]</span> profiled X.509 certificates. Two variants are defined using the same CBOR encoding and differing only in what is being signed:<a href="#section-1-4" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-1-5.1">An invertible CBOR re-encoding of DER encoded X.509 certificates <span>[<a href="#RFC5280" class="xref">RFC5280</a>]</span>, which can be reversed to obtain the original DER encoded X.509 certificate.<a href="#section-1-5.1" class="pilcrow">¶</a>
+<p id="section-1-4">CAB Baseline Requirements <span>[<a href="#CAB-Baseline" class="xref">CAB-Baseline</a>]</span>, RFC 7925 <span>[<a href="#RFC7925" class="xref">RFC7925</a>]</span>, IEEE 802.1AR <span>[<a href="#IEEE-802.1AR" class="xref">IEEE-802.1AR</a>]</span>, and CNSA <span>[<a href="#RFC8603" class="xref">RFC8603</a>]</span> specify certificate profiles which can be applied to certificate based authentication with, e.g., TLS <span>[<a href="#RFC8446" class="xref">RFC8446</a>]</span>, QUIC <span>[<a href="#I-D.ietf-quic-transport" class="xref">I-D.ietf-quic-transport</a>]</span>, DTLS <span>[<a href="#I-D.ietf-tls-dtls13" class="xref">I-D.ietf-tls-dtls13</a>]</span>, COSE <span>[<a href="#RFC8152" class="xref">RFC8152</a>]</span>, EDHOC <span>[<a href="#I-D.ietf-lake-edhoc" class="xref">I-D.ietf-lake-edhoc</a>]</span>, or Compact TLS 1.3 <span>[<a href="#I-D.ietf-tls-ctls" class="xref">I-D.ietf-tls-ctls</a>]</span>. RFC 7925 <span>[<a href="#RFC7925" class="xref">RFC7925</a>]</span>, RFC7925bis <span>[<a href="#I-D.ietf-uta-tls13-iot-profile" class="xref">I-D.ietf-uta-tls13-iot-profile</a>]</span>, and IEEE 802.1AR <span>[<a href="#IEEE-802.1AR" class="xref">IEEE-802.1AR</a>]</span> specifically target Internet of Things deployments. This document specifies a CBOR encoding based on <span>[<a href="#X.509-IoT" class="xref">X.509-IoT</a>]</span>, which can support large parts of <span>[<a href="#RFC5280" class="xref">RFC5280</a>]</span>. The encoding support all <span>[<a href="#RFC7925" class="xref">RFC7925</a>]</span> and IEEE 802.1AR <span>[<a href="#IEEE-802.1AR" class="xref">IEEE-802.1AR</a>]</span> and CAB Baseline <span>[<a href="#CAB-Baseline" class="xref">CAB-Baseline</a>]</span> profiled X.509 certificates. The resulting certificates are called CXXX Certificates. Two variants  are defined using the same CBOR encoding and differing only in what is being signed:<a href="#section-1-4" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-1-5">
+<li id="section-1-5.1">An invertible CBOR re-encoding of DER encoded X.509 certificates <span>[<a href="#RFC5280" class="xref">RFC5280</a>]</span>, which can be reversed to obtain the original DER encoded X.509 certificate.<a href="#section-1-5.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-1-5.2">Natively signed CBOR certificates, which further optimizes the performance in constrained environments but is not backwards compatible with <span>[<a href="#RFC5280" class="xref">RFC5280</a>]</span>, see <a href="#native-CBOR" class="xref">Section 7</a>.<a href="#section-1-5.2" class="pilcrow">¶</a>
+        <li id="section-1-5.2">Natively signed CXXX certificates, where the signature is calculated over the CBOR encoding instead of over the DER encoding as in 1. This removes entirely the need for ASN.1 DER and base64 encodings and the associated complexity and security issues, but they are not backwards compatible with <span>[<a href="#RFC5280" class="xref">RFC5280</a>]</span>.<a href="#section-1-5.2" class="pilcrow">¶</a>
 </li>
-      </ul>
-<p id="section-1-6">This document specifies COSE headers for use of the CBOR certificates with COSE, see <a href="#cose" class="xref">Section 9.8</a>. The document also specifies a TLS certificate type for use of the CBOR certificates with TLS and QUIC (with or without additional TLS certificate compression), see <a href="#tls" class="xref">Section 9.9</a>.<a href="#section-1-6" class="pilcrow">¶</a></p>
+      </ol>
+<p id="section-1-6">Natively signed CXXX certificates can be applied in devices that are only required to authenticate to natively signed CXXX certificate compatible servers, which is not a major restriction for many IoT deployments where the parties issuing and verifying certificates can be a restricted ecosystem.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">This document specifies COSE headers for use of the CXXX certificates with COSE, see <a href="#cose" class="xref">Section 8.8</a>. The document also specifies a TLS certificate type for use of the CXXX certificates with TLS and QUIC (with or without additional TLS certificate compression), see <a href="#tls" class="xref">Section 8.9</a>.<a href="#section-1-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="notational-conventions">
@@ -1062,40 +1060,40 @@ address div.right {
       <h2 id="name-cbor-encoding">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-cbor-encoding" class="section-name selfRef">CBOR Encoding</a>
       </h2>
-<p id="section-3-1">This section specifies the content and encoding for CBOR certificates, with the overall objective to produce a very compact representation supporting large parts of <span>[<a href="#RFC5280" class="xref">RFC5280</a>]</span>, and everything in <span>[<a href="#RFC7925" class="xref">RFC7925</a>]</span>, <span>[<a href="#IEEE-802.1AR" class="xref">IEEE-802.1AR</a>]</span>, and CAB Baseline <span>[<a href="#CAB-Baseline" class="xref">CAB-Baseline</a>]</span>. In the CBOR encoding, static fields are elided, elliptic curve points and time values are compressed, OID are replaced with short integers, and redundant encoding is removed. Combining these different components reduces the certificate size significantly, which is not possible with general purpose compressions algorithms, see <a href="#fig-table" class="xref">Figure 2</a>.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">The CBOR certificate can be either a CBOR re-encoding of a DER encoded X.509 certificate, in which case the signature is calculated on the DER encoded ASN.1 data in the X.509 certificate, or a natively signed CBOR certificate, in which case the signature is calculated directly on the CBOR encoded data (see <a href="#native-CBOR" class="xref">Section 7</a>). In both cases the certificate content is adhering to the restrictions given by <span>[<a href="#RFC5280" class="xref">RFC5280</a>]</span>. The re-encoding is known to work with DER encoded certificates but might work with other canonical encodings. The re-encoding does not work for BER encoded certificates.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-1">This section specifies the content and encoding for CXXX certificates, with the overall objective to produce a very compact representation supporting large parts of <span>[<a href="#RFC5280" class="xref">RFC5280</a>]</span>, and everything in <span>[<a href="#RFC7925" class="xref">RFC7925</a>]</span>, <span>[<a href="#IEEE-802.1AR" class="xref">IEEE-802.1AR</a>]</span>, and CAB Baseline <span>[<a href="#CAB-Baseline" class="xref">CAB-Baseline</a>]</span>. In the CBOR encoding, static fields are elided, elliptic curve points and time values are compressed, OID are replaced with short integers, and redundant encoding is removed. Combining these different components reduces the certificate size significantly, which is not possible with general purpose compressions algorithms, see <a href="#fig-table" class="xref">Figure 2</a>.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">The CXXX certificate can be either a CBOR re-encoding of a DER encoded X.509 certificate, in which case the signature is calculated on the DER encoded ASN.1 data in the X.509 certificate, or a natively signed CXXX certificate, in which case the signature is calculated directly on the CBOR encoded data. In both cases the certificate content is adhering to the restrictions given by <span>[<a href="#RFC5280" class="xref">RFC5280</a>]</span>. The re-encoding is known to work with DER encoded certificates but might work with other canonical encodings. The re-encoding does not work for BER encoded certificates.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">In the encoding described below, the order of elements in arrays are always encoded in the same order as the elements or the corresponding SEQUENCE or SET in the DER encoding.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <div id="message-fields">
 <section id="section-3.1">
         <h3 id="name-message-fields">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-message-fields" class="section-name selfRef">Message Fields</a>
         </h3>
-<p id="section-3.1-1">The X.509 fields and their CBOR encodings are listed below, and used in the definition of CBOR Certificates, see <a href="#fig-CBORCertCDDL" class="xref">Figure 1</a>.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1-2">CBOR certificates are defined in terms of DER encoded <span>[<a href="#RFC5280" class="xref">RFC5280</a>]</span> X.509 certificates:<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">The X.509 fields and their CBOR encodings are listed below, and used in the definition of CXXX certificates, see <a href="#fig-CBORCertCDDL" class="xref">Figure 1</a>.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">CXXX certificates are defined in terms of DER encoded <span>[<a href="#RFC5280" class="xref">RFC5280</a>]</span> X.509 certificates:<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.1-3.1">version. The 'version' field is encoded in the 'cborCertificateType' CBOR int. The field 'cborCertificateType' also indicates the type of the CBOR certificate. Currently, the type can be a natively signed CBOR certificate following X.509 v3 (cborCertificateType = 0) or a CBOR re-encoded X.509 v3 DER certificate (cborCertificateType = 1), see <a href="#type" class="xref">Section 9.1</a>.<a href="#section-3.1-3.1" class="pilcrow">¶</a>
+<li class="normal" id="section-3.1-3.1">version. The 'version' field is encoded in the 'cborCertificateType' CBOR int. The field 'cborCertificateType' also indicates the type of the CXXX certificate. Currently, the type can be a natively signed CXXX certificate following X.509 v3 (cborCertificateType = 0) or a CBOR re-encoded X.509 v3 DER certificate (cborCertificateType = 1), see <a href="#type" class="xref">Section 8.1</a>.<a href="#section-3.1-3.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-3.1-3.2">serialNumber. The 'serialNumber' INTEGER value field is encoded as the unwrapped CBOR unsigned bignum (~biguint) 'certificateSerialNumber'. Any leading 0x00 byte (to indicate that the number is not negative) is therefore omitted.<a href="#section-3.1-3.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-3.1-3.3">signature. The 'signature' field is always the same as the 'signatureAlgorithm' field and therefore omitted from the CBOR encoding.<a href="#section-3.1-3.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-3.4">issuer. In the general case, the sequence of 'RelativeDistinguishedName' is encoded as a CBOR array of CBOR arrays of Attributes. Typically each RelativeDistinguishedName only contains a single attribute and the sequence is then ecoded as a CBOR array of Attributes. Each Attribute is encoded as a (CBOR int, CBOR text string) pair or as a (unwrapped CBOR OID, CBOR bytes) pair. The absolute value of the CBOR int (see <a href="#fig-attrtype" class="xref">Figure 4</a>) encodes the attribute type and the sign is used to represent the character string type; positive for Utf8String, negative for PrintableString. In natively signed CBOR certificates all text strings are UTF-8 encoded and all attributes SHALL have a positive sign. Text strings SHALL still adhere to any X.509 restrictions, i.e. serialNumber SHALL only contain the 74 character subset of ASCII allowed by PrintableString and countryName SHALL have length 2. The string types teletexString, universalString, and bmpString are not supported. If Name contains a single Attribute containing an utf8String encoded 'common name' it is encoded as a CBOR text string. If the text string contains an EUI-64 of the form "HH-HH-HH-HH-HH-HH-HH-HH" where 'H' is one of the symbol '0'-'9' or 'A'-'F' it is encoded as a CBOR byte string of length 8 instead. EUI-64 mapped from a 48-bit MAC address (i.e. of the form "HH-HH-HH-FF-FE-HH-HH-HH) is encoded as a CBOR byte string of length 6.<a href="#section-3.1-3.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-3.4">issuer. In the general case, the sequence of 'RelativeDistinguishedName' is encoded as a CBOR array of CBOR arrays of Attributes. Typically each RelativeDistinguishedName only contains a single attribute and the sequence is then ecoded as a CBOR array of Attributes. Each Attribute is encoded as a (CBOR int, CBOR text string) pair or as a (unwrapped CBOR OID, CBOR bytes) pair. The absolute value of the CBOR int (see <a href="#fig-attrtype" class="xref">Figure 4</a>) encodes the attribute type and the sign is used to represent the character string type; positive for Utf8String, negative for PrintableString. In natively signed CXXX certificates all text strings are UTF-8 encoded and all attributes SHALL have a positive sign. Text strings SHALL still adhere to any X.509 restrictions, i.e. serialNumber SHALL only contain the 74 character subset of ASCII allowed by PrintableString and countryName SHALL have length 2. The string types teletexString, universalString, and bmpString are not supported. If Name contains a single Attribute containing an utf8String encoded 'common name' it is encoded as a CBOR text string. If the text string contains an EUI-64 of the form "HH-HH-HH-HH-HH-HH-HH-HH" where 'H' is one of the symbol '0'-'9' or 'A'-'F' it is encoded as a CBOR byte string of length 8 instead. EUI-64 mapped from a 48-bit MAC address (i.e. of the form "HH-HH-HH-FF-FE-HH-HH-HH) is encoded as a CBOR byte string of length 6.<a href="#section-3.1-3.4" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-3.1-3.5">validity. The 'notBefore' and 'notAfter' fields are encoded as unwrapped CBOR epoch-based date/time (~time) where the tag content is an unsigned integer. In POSIX time, leap seconds are ignored, with a leap second having the same POSIX time as the second before it. Compression of X.509 certificates with the time 23:59:60 UTC is therefore not supported. Note that RFC 5280 mandates encoding of dates through the year 2049 as UTCTime, and later dates as GeneralizedTime. The value "99991231235959Z" (no expiration date) is encoded as CBOR null.<a href="#section-3.1-3.5" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-3.1-3.6">subject. The 'subject' is encoded exactly like issuer.<a href="#section-3.1-3.6" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-3.7">subjectPublicKeyInfo.  The 'AlgorithmIdentifier' field including parameters is encoded as the CBOR int 'subjectPublicKeyAlgorithm' (see <a href="#pkalg" class="xref">Section 9.7</a>) or as an array with an unwrapped CBOR OID tag <span>[<a href="#I-D.ietf-cbor-tags-oid" class="xref">I-D.ietf-cbor-tags-oid</a>]</span> optionally followed by the parameters encoded as a CBOR byte string. In general, the 'subjectPublicKey' BIT STRING value field is encoded as a CBOR byte string. This specification assumes the BIT STRING has zero unused bits and the unused bits byte is omitted. For rsaEncryption and id-ecPublicKey, the encoding of subjectPublicKey is further optimized as described in <a href="#alg-encoding" class="xref">Section 3.2</a>.<a href="#section-3.1-3.7" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-3.7">subjectPublicKeyInfo.  The 'AlgorithmIdentifier' field including parameters is encoded as the CBOR int 'subjectPublicKeyAlgorithm' (see <a href="#pkalg" class="xref">Section 8.7</a>) or as an array with an unwrapped CBOR OID tag <span>[<a href="#I-D.ietf-cbor-tags-oid" class="xref">I-D.ietf-cbor-tags-oid</a>]</span> optionally followed by the parameters encoded as a CBOR byte string. In general, the 'subjectPublicKey' BIT STRING value field is encoded as a CBOR byte string. This specification assumes the BIT STRING has zero unused bits and the unused bits byte is omitted. For rsaEncryption and id-ecPublicKey, the encoding of subjectPublicKey is further optimized as described in <a href="#alg-encoding" class="xref">Section 3.2</a>.<a href="#section-3.1-3.7" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-3.1-3.8">issuerUniqueID. Not supported.<a href="#section-3.1-3.8" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-3.1-3.9">subjectUniqueID. Not supported.<a href="#section-3.1-3.9" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-3.10">extensions. The 'extensions' field is encoded as a CBOR array where each extension is encoded as either a CBOR int (see <a href="#extype" class="xref">Section 9.3</a>) followed by an optional CBOR item of any type or an unwrapped CBOR OID tag <span>[<a href="#I-D.ietf-cbor-tags-oid" class="xref">I-D.ietf-cbor-tags-oid</a>]</span> followed by a CBOR bool encoding 'critical' and the DER encoded value of the 'extnValue' encoded as a CBOR byte string. If the array contains exactly two ints and the absolute value of the first int is 2, the array is omitted and the extensions is encoded as a single CBOR int with the absolute value of the second int and the sign of the first int. Extensions are encoded as specified in <a href="#ext-encoding" class="xref">Section 3.3</a>. The extensions mandated to be supported by <span>[<a href="#RFC7925" class="xref">RFC7925</a>]</span> and <span>[<a href="#IEEE-802.1AR" class="xref">IEEE-802.1AR</a>]</span> are given special treatment. An omitted 'extensions' field is encoded as an empty CBOR array.<a href="#section-3.1-3.10" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-3.10">extensions. The 'extensions' field is encoded as a CBOR array where each extension is encoded as either a CBOR int (see <a href="#extype" class="xref">Section 8.3</a>) followed by an optional CBOR item of any type or an unwrapped CBOR OID tag <span>[<a href="#I-D.ietf-cbor-tags-oid" class="xref">I-D.ietf-cbor-tags-oid</a>]</span> followed by a CBOR bool encoding 'critical' and the DER encoded value of the 'extnValue' encoded as a CBOR byte string. If the array contains exactly two ints and the absolute value of the first int is 2, the array is omitted and the extensions is encoded as a single CBOR int with the absolute value of the second int and the sign of the first int. Extensions are encoded as specified in <a href="#ext-encoding" class="xref">Section 3.3</a>. The extensions mandated to be supported by <span>[<a href="#RFC7925" class="xref">RFC7925</a>]</span> and <span>[<a href="#IEEE-802.1AR" class="xref">IEEE-802.1AR</a>]</span> are given special treatment. An omitted 'extensions' field is encoded as an empty CBOR array.<a href="#section-3.1-3.10" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-3.11">signatureAlgorithm. The 'signatureAlgorithm' field including parameters is encoded as a CBOR int (see <a href="#sigalg" class="xref">Section 9.6</a>) or as an array with an unwrapped CBOR OID tag <span>[<a href="#I-D.ietf-cbor-tags-oid" class="xref">I-D.ietf-cbor-tags-oid</a>]</span> optionally followed by the parameters encoded as a CBOR byte string.<a href="#section-3.1-3.11" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-3.11">signatureAlgorithm. The 'signatureAlgorithm' field including parameters is encoded as a CBOR int (see <a href="#sigalg" class="xref">Section 8.6</a>) or as an array with an unwrapped CBOR OID tag <span>[<a href="#I-D.ietf-cbor-tags-oid" class="xref">I-D.ietf-cbor-tags-oid</a>]</span> optionally followed by the parameters encoded as a CBOR byte string.<a href="#section-3.1-3.11" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-3.12">signatureValue. In general, the 'signatureValue' BIT STRING value field is encoded as the CBOR byte string issuerSignatureValue. This specification assumes the BIT STRING has zero unused bits and the unused bits byte is omitted. For natively signed CBOR certificates the signatureValue is calculated over the CBOR sequence TBSCertificate. For ECDSA, the encoding of issuerSignatureValue is further optimized as described in <a href="#alg-encoding" class="xref">Section 3.2</a><a href="#section-3.1-3.12" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-3.12">signatureValue. In general, the 'signatureValue' BIT STRING value field is encoded as the CBOR byte string issuerSignatureValue. This specification assumes the BIT STRING has zero unused bits and the unused bits byte is omitted. For natively signed CXXX certificates the signatureValue is calculated over the CBOR sequence TBSCertificate. For ECDSA, the encoding of issuerSignatureValue is further optimized as described in <a href="#alg-encoding" class="xref">Section 3.2</a><a href="#section-3.1-3.12" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-3.1-4">The following Concise Data Definition Language (CDDL) defines CBORCertificate and TBSCertificate, which are encoded as CBOR Sequences <span>[<a href="#RFC8742" class="xref">RFC8742</a>]</span>. The member names therefore only have documentary value.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
@@ -1177,12 +1175,12 @@ Extension = ( extensionID: int, extensionValue: any ) //
         <h3 id="name-encoding-of-extensions">
 <a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-encoding-of-extensions" class="section-name selfRef">Encoding of Extensions</a>
         </h3>
-<p id="section-3.3-1">This section details the encoding of the 'extensions' field. The 'extensions' field is encoded as a CBOR array where each extensionID is encoded as either a CBOR int or a CBOR OID tag. If 'extensionID' is encoded an int (see <a href="#extype" class="xref">Section 9.3</a>),the sign is used to encode if the extension is critical and the 'critical' field is omitted. Critical extensions are encoded with a positive sign and non-critical extensions are encoded with a negative sign.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-1">This section details the encoding of the 'extensions' field. The 'extensions' field is encoded as a CBOR array where each extensionID is encoded as either a CBOR int or a CBOR OID tag. If 'extensionID' is encoded an int (see <a href="#extype" class="xref">Section 8.3</a>),the sign is used to encode if the extension is critical and the 'critical' field is omitted. Critical extensions are encoded with a positive sign and non-critical extensions are encoded with a negative sign.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
 <p id="section-3.3-2">The 'extnValue' OCTET STREAM value field is encoded as the CBOR byte string 'extensionValue' except for the extensions specified below. The 'extensionValue' for the extensions mandated to be supported by <span>[<a href="#RFC7925" class="xref">RFC7925</a>]</span>, <span>[<a href="#IEEE-802.1AR" class="xref">IEEE-802.1AR</a>]</span>, and <span>[<a href="#CAB-Baseline" class="xref">CAB-Baseline</a>]</span> are encoded as follows:<a href="#section-3.3-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.3-3.1">keyUsage. The 'KeyUsage' BIT STRING is interpreted as an unsigned integer n in network byte order and encoded as a CBOR int.<a href="#section-3.3-3.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.3-3.2">subjectAltName. extensionValue is encoded as an array of (int, any) pairs where each pair encodes a general name (see <a href="#GN" class="xref">Section 9.5</a>). If subjectAltName contains exactly one dNSName, the array and the int are omitted and extensionValue is the dNSName encoded as a CBOR text string. In addition to the general names defined in <span>[<a href="#RFC5280" class="xref">RFC5280</a>]</span>, the hardwareModuleName type of otherName has been given its own int due to its mandatory use in IEEE 802.1AR. When 'otherName + hardwareModuleName' is used, then [ oid, bytes ] is used to identify the pair ( hwType, hwSerialEntries ) directly as specified in <span>[<a href="#RFC4108" class="xref">RFC4108</a>]</span>.<a href="#section-3.3-3.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.3-3.2">subjectAltName. extensionValue is encoded as an array of (int, any) pairs where each pair encodes a general name (see <a href="#GN" class="xref">Section 8.5</a>). If subjectAltName contains exactly one dNSName, the array and the int are omitted and extensionValue is the dNSName encoded as a CBOR text string. In addition to the general names defined in <span>[<a href="#RFC5280" class="xref">RFC5280</a>]</span>, the hardwareModuleName type of otherName has been given its own int due to its mandatory use in IEEE 802.1AR. When 'otherName + hardwareModuleName' is used, then [ oid, bytes ] is used to identify the pair ( hwType, hwSerialEntries ) directly as specified in <span>[<a href="#RFC4108" class="xref">RFC4108</a>]</span>.<a href="#section-3.3-3.2" class="pilcrow">¶</a>
 </li>
         </ul>
 <div class="artwork art-text alignLeft" id="section-3.3-4">
@@ -1194,7 +1192,7 @@ Extension = ( extensionID: int, extensionValue: any ) //
 <ul class="normal">
 <li class="normal" id="section-3.3-5.1">basicConstraints. If 'cA' = false then extensionValue = -2, if 'cA' = true and 'pathLenConstraint' is not present then extensionValue = -1, and if 'cA' = true and 'pathLenConstraint' is present then extensionValue = pathLenConstraint.<a href="#section-3.3-5.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.3-5.2">extKeyUsage. extensionValue is encoded as an array of CBOR ints (see <a href="#EKU" class="xref">Section 9.4</a>) or unwrapped CBOR OID tags <span>[<a href="#I-D.ietf-cbor-tags-oid" class="xref">I-D.ietf-cbor-tags-oid</a>]</span> where each int or OID tag encodes a key usage purpose. If the array contains a single int, the array is omitted.<a href="#section-3.3-5.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.3-5.2">extKeyUsage. extensionValue is encoded as an array of CBOR ints (see <a href="#EKU" class="xref">Section 8.4</a>) or unwrapped CBOR OID tags <span>[<a href="#I-D.ietf-cbor-tags-oid" class="xref">I-D.ietf-cbor-tags-oid</a>]</span> where each int or OID tag encodes a key usage purpose. If the array contains a single int, the array is omitted.<a href="#section-3.3-5.2" class="pilcrow">¶</a>
 </li>
         </ul>
 <div class="artwork art-text alignLeft" id="section-3.3-6">
@@ -1229,7 +1227,7 @@ Extension = ( extensionID: int, extensionValue: any ) //
           <h4 id="name-example-encoding-of-extensi">
 <a href="#section-3.3.1" class="section-number selfRef">3.3.1. </a><a href="#name-example-encoding-of-extensi" class="section-name selfRef">Example Encoding of Extensions</a>
           </h4>
-<p id="section-3.3.1-1">The examples below use values from <a href="#extype" class="xref">Section 9.3</a>, <a href="#EKU" class="xref">Section 9.4</a>, and <a href="#GN" class="xref">Section 9.5</a>:<a href="#section-3.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.3.1-1">The examples below use values from <a href="#extype" class="xref">Section 8.3</a>, <a href="#EKU" class="xref">Section 8.4</a>, and <a href="#GN" class="xref">Section 8.5</a>:<a href="#section-3.3.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.3.1-2.1">A critical basicConstraints ('cA' = true) without pathLenConstraint is encoded as the two CBOR ints -1, -1.<a href="#section-3.3.1-2.1" class="pilcrow">¶</a>
 </li>
@@ -1261,9 +1259,9 @@ Extension = ( extensionID: int, extensionValue: any ) //
       <h2 id="name-legacy-considerations">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-legacy-considerations" class="section-name selfRef">Legacy Considerations</a>
       </h2>
-<p id="section-5-1">CBOR certificates can be deployed with legacy X.509 certificates and CA infrastructure. In order to verify the signature, the CBOR certificate is used to recreate the original X.509 data structure to be able to verify the signature.<a href="#section-5-1" class="pilcrow">¶</a></p>
-<p id="section-5-2">For protocols like TLS/DTLS 1.2, where the handshake is sent unencrypted, the actual encoding and compression can be done at different locations depending on the deployment setting. For example, the mapping between CBOR certificate and standard X.509 certificate can take place in a 6LoWPAN border gateway which allows the server side to stay unmodified. This case gives the advantage of the low overhead of a CBOR certificate over a constrained wireless links. The conversion to X.509 within an IoT device will incur a computational overhead, however, measured in energy this is likely to be negligible compared to the reduced communication overhead.<a href="#section-5-2" class="pilcrow">¶</a></p>
-<p id="section-5-3">For the setting with constrained server and server-only authentication, the server only needs to be provisioned with the CBOR certificate and does not perform the conversion to X.509. This option is viable when client authentication can be asserted by other means.<a href="#section-5-3" class="pilcrow">¶</a></p>
+<p id="section-5-1">CXXX certificates can be deployed with legacy X.509 certificates and CA infrastructure. In order to verify the signature, the CXXX certificate is used to recreate the original X.509 data structure to be able to verify the signature.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">For protocols like TLS/DTLS 1.2, where the handshake is sent unencrypted, the actual encoding and compression can be done at different locations depending on the deployment setting. For example, the mapping between CXXX certificate and standard X.509 certificate can take place in a 6LoWPAN border gateway which allows the server side to stay unmodified. This case gives the advantage of the low overhead of a CXXX certificate over a constrained wireless links. The conversion to X.509 within an IoT device will incur a computational overhead, however, measured in energy this is likely to be negligible compared to the reduced communication overhead.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">For the setting with constrained server and server-only authentication, the server only needs to be provisioned with the CXXX certificate and does not perform the conversion to X.509. This option is viable when client authentication can be asserted by other means.<a href="#section-5-3" class="pilcrow">¶</a></p>
 <p id="section-5-4">For protocols like IKEv2, TLS/DTLS 1.3, and EDHOC, where certificates are encrypted, the proposed encoding needs to be done fully end-to-end, through adding the encoding/decoding functionality to the server.<a href="#section-5-4" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1278,7 +1276,7 @@ Extension = ( extensionID: int, extensionValue: any ) //
         <div class="artwork art-text alignCenter" id="section-6-2.1">
 <pre>
 +------------------+--------------+------------+--------------------+
-|                  |   RFC 7925   |   Brotli   |  CBOR Certificate  |
+|                  |   RFC 7925   |   Brotli   |  CXXX Certificate  |
 +------------------+---------------------------+--------------------+
 | Certificate Size |     314      |     303    |         138        |
 +------------------+--------------+------------+--------------------+
@@ -1290,69 +1288,58 @@ Extension = ( extensionID: int, extensionValue: any ) //
 </div>
 </section>
 </div>
-<div id="native-CBOR">
-<section id="section-7">
-      <h2 id="name-natively-signed-cbor-certif">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-natively-signed-cbor-certif" class="section-name selfRef">Natively Signed CBOR Certificates</a>
-      </h2>
-<p id="section-7-1">The difference between CBOR encoded X.509 certificate and natively signed CBOR certificate is that the signature is calculated over the CBOR encoding of the CBOR sequence TBSCertficate rather than the DER encoded ASN.1 data. This removes entirely the need for ASN.1 DER and base64 encodings which reduces the processing in the authenticating devices, and avoids known complexities and security issues with these encodings.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">Natively signed CBOR certificates can be applied in devices that are only required to authenticate to natively signed CBOR certificate compatible servers. This is not a major restriction for many IoT deployments, where the parties issuing and verifying certificates can be a restricted ecosystem which not necessarily involves public CAs.<a href="#section-7-2" class="pilcrow">¶</a></p>
-<p id="section-7-3">CBOR encoded X.509 certificates provides an intermediate step between <span>[<a href="#RFC7925" class="xref">RFC7925</a>]</span> or <span>[<a href="#IEEE-802.1AR" class="xref">IEEE-802.1AR</a>]</span> profiled X.509 certificates and natively signed CBOR certificates: An implementation of CBOR encoded X.509 certificates contains both the CBOR encoding of the X.509 certificate and the signature operations sufficient for natively signed CBOR certificates.<a href="#section-7-3" class="pilcrow">¶</a></p>
-<p id="section-7-4">The natively signed approach based on DER encoded X.509 certificates described in this document has also other benefits. For example, a CA can use existing ASN.1 machinery to create a DER encoded certificate, the DER encoded certificate can then be transformed to CBOR before signing.<a href="#section-7-4" class="pilcrow">¶</a></p>
-</section>
-</div>
 <div id="sec-cons">
-<section id="section-8">
+<section id="section-7">
       <h2 id="name-security-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-8-1">The CBOR profiling of X.509 certificates does not change the security assumptions needed when deploying standard X.509 certificates but decreases the number of fields transmitted, which reduces the risk for implementation errors.<a href="#section-8-1" class="pilcrow">¶</a></p>
-<p id="section-8-2">The use of natively signed CBOR certificates removes the need for ASN.1 encoding, which is a rich source of security vulnerabilities.<a href="#section-8-2" class="pilcrow">¶</a></p>
-<p id="section-8-3">Conversion between the certificate formats can be made in constant time to reduce risk of information leakage through side channels.<a href="#section-8-3" class="pilcrow">¶</a></p>
-<p id="section-8-4">The mechanism in this draft does not reveal any additional information compared to X.509. Because of difference in size, it will be possible to detect that this profile is used. The gateway solution described in <a href="#dep-set" class="xref">Section 5</a> requires unencrypted certificates and is not recommended.<a href="#section-8-4" class="pilcrow">¶</a></p>
+<p id="section-7-1">The CBOR profiling of X.509 certificates does not change the security assumptions needed when deploying standard X.509 certificates but decreases the number of fields transmitted, which reduces the risk for implementation errors.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2">The use of natively signed CXXX certificates removes the need for ASN.1 encoding, which is a rich source of security vulnerabilities.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-3">Conversion between the certificate formats can be made in constant time to reduce risk of information leakage through side channels.<a href="#section-7-3" class="pilcrow">¶</a></p>
+<p id="section-7-4">The mechanism in this draft does not reveal any additional information compared to X.509. Because of difference in size, it will be possible to detect that this profile is used. The gateway solution described in <a href="#dep-set" class="xref">Section 5</a> requires unencrypted certificates and is not recommended.<a href="#section-7-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana">
-<section id="section-9">
+<section id="section-8">
       <h2 id="name-iana-considerations">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-9-1">This document creates several new registries under the new heading "CBOR Certificate". For all items, the 'Reference' field points to this document.<a href="#section-9-1" class="pilcrow">¶</a></p>
-<p id="section-9-2">The expert reviewers for the registries defined in this document are expected to ensure that the usage solves a valid use case that could not be solved better in a different way, that it is not going to duplicate one that is already registered, and that the registered point is likely to be used in deployments. They are furthermore expected to check the clarity of purpose and use of the requested code points. Experts should take into account the expected usage of entries when approving point assignment, and the length of the encoded value should be weighed against the number of code points left that encode to that size and how constrained the systems it will be used on are. Values in the interval [-24, 23] have a 1 byte encodings, other values in the interval [-256, 255] have a 2 byte encodings, and the remaning values in the interval [-65536, 65535] have 3 byte encodings.<a href="#section-9-2" class="pilcrow">¶</a></p>
+<p id="section-8-1">This document creates several new registries under the new heading "CXXX Certificate". For all items, the 'Reference' field points to this document.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">The expert reviewers for the registries defined in this document are expected to ensure that the usage solves a valid use case that could not be solved better in a different way, that it is not going to duplicate one that is already registered, and that the registered point is likely to be used in deployments. They are furthermore expected to check the clarity of purpose and use of the requested code points. Experts should take into account the expected usage of entries when approving point assignment, and the length of the encoded value should be weighed against the number of code points left that encode to that size and how constrained the systems it will be used on are. Values in the interval [-24, 23] have a 1 byte encodings, other values in the interval [-256, 255] have a 2 byte encodings, and the remaning values in the interval [-65536, 65535] have 3 byte encodings.<a href="#section-8-2" class="pilcrow">¶</a></p>
 <div id="type">
-<section id="section-9.1">
-        <h3 id="name-cbor-certificate-types-regi">
-<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-cbor-certificate-types-regi" class="section-name selfRef">CBOR Certificate Types Registry</a>
+<section id="section-8.1">
+        <h3 id="name-cxxx-certificate-types-regi">
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-cxxx-certificate-types-regi" class="section-name selfRef">CXXX Certificate Types Registry</a>
         </h3>
-<p id="section-9.1-1">IANA has created a new registry titled "CBOR Certificate Types" under the new heading "CBOR Certificate". The columns of the registry are Value, Description, and Reference, where Value is an integer, and the other columns are text strings. For values in the interval [-24, 23] the registration procedure is "IETF Review" and "Expert Review". For all other values the registration procedure is "Expert Review".  The initial contents of the registry are:<a href="#section-9.1-1" class="pilcrow">¶</a></p>
-<span id="name-cbor-certificate-types"></span><div id="fig-types">
+<p id="section-8.1-1">IANA has created a new registry titled "CXXX Certificate Types" under the new heading "CXXX Certificate". The columns of the registry are Value, Description, and Reference, where Value is an integer, and the other columns are text strings. For values in the interval [-24, 23] the registration procedure is "IETF Review" and "Expert Review". For all other values the registration procedure is "Expert Review".  The initial contents of the registry are:<a href="#section-8.1-1" class="pilcrow">¶</a></p>
+<span id="name-cxxx-certificate-types"></span><div id="fig-types">
 <figure id="figure-3">
-          <div class="artwork art-text alignCenter" id="section-9.1-2.1">
+          <div class="artwork art-text alignCenter" id="section-8.1-2.1">
 <pre>
 +-------+-----------------------------------------------------------+
 | Value | Description                                               |
 +=======+===========================================================+
-|     0 | Natively Signed CBOR Certificate following X.509 v3       |
+|     0 | Natively Signed CXXX Certificate following X.509 v3       |
 +-------+-----------------------------------------------------------+
 |     1 | CBOR re-encoding of X.509 v3 Certificate                  |
 +-------+-----------------------------------------------------------+
 </pre>
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
-<a href="#name-cbor-certificate-types" class="selfRef">CBOR Certificate Types</a>
+<a href="#name-cxxx-certificate-types" class="selfRef">CXXX Certificate Types</a>
           </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="atttype">
-<section id="section-9.2">
-        <h3 id="name-cbor-certificate-attributes">
-<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-cbor-certificate-attributes" class="section-name selfRef">CBOR Certificate Attributes Registry</a>
+<section id="section-8.2">
+        <h3 id="name-cxxx-certificate-attributes">
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-cxxx-certificate-attributes" class="section-name selfRef">CXXX Certificate Attributes Registry</a>
         </h3>
-<p id="section-9.2-1">IANA has created a new registry titled "CBOR Certificate Attributes" under the new heading "CBOR Certificate". The columns of the registry are Value, Name, OID, DER, Comments, and Reference, where Value is an integer, and the other columns are text strings. Only non-negative values can be registered. For values in the interval [0, 23] the registration procedure is "IETF Review" and "Expert Review". For all other values the registration procedure is "Expert Review". The initial contents of the registry are:<a href="#section-9.2-1" class="pilcrow">¶</a></p>
-<span id="name-cbor-certificate-attributes-2"></span><div id="fig-attrtype">
+<p id="section-8.2-1">IANA has created a new registry titled "CXXX Certificate Attributes" under the new heading "CXXX Certificate". The columns of the registry are Value, Name, OID, DER, Comments, and Reference, where Value is an integer, and the other columns are text strings. Only non-negative values can be registered. For values in the interval [0, 23] the registration procedure is "IETF Review" and "Expert Review". For all other values the registration procedure is "Expert Review". The initial contents of the registry are:<a href="#section-8.2-1" class="pilcrow">¶</a></p>
+<span id="name-cxxx-certificate-attributes-2"></span><div id="fig-attrtype">
 <figure id="figure-4">
-          <div class="artwork art-text alignCenter" id="section-9.2-2.1">
+          <div class="artwork art-text alignCenter" id="section-8.2-2.1">
 <pre>
 +-------+-----------------------------------------------------------+
 | Value | Attribute                                                 |
@@ -1445,20 +1432,20 @@ Extension = ( extensionID: int, extensionValue: any ) //
 </pre>
 </div>
 <figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
-<a href="#name-cbor-certificate-attributes-2" class="selfRef">CBOR Certificate Attributes</a>
+<a href="#name-cxxx-certificate-attributes-2" class="selfRef">CXXX Certificate Attributes</a>
           </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="extype">
-<section id="section-9.3">
-        <h3 id="name-cbor-certificate-extensions">
-<a href="#section-9.3" class="section-number selfRef">9.3. </a><a href="#name-cbor-certificate-extensions" class="section-name selfRef">CBOR Certificate Extensions Registry</a>
+<section id="section-8.3">
+        <h3 id="name-cxxx-certificate-extensions">
+<a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-cxxx-certificate-extensions" class="section-name selfRef">CXXX Certificate Extensions Registry</a>
         </h3>
-<p id="section-9.3-1">IANA has created a new registry titled "CBOR Certificate Extensions" under the new heading "CBOR Certificate". The columns of the registry are Value, Name, OID, DER, Comments, extensionValue, and Reference, where Value is an integer, and the other columns are text strings. Only non-negative values can be registered. For values in the interval [0, 23] the registration procedure is "IETF Review" and "Expert Review". For all other values the registration procedure is "Expert Review". The initial contents of the registry are:<a href="#section-9.3-1" class="pilcrow">¶</a></p>
-<span id="name-cbor-certificate-extensions-2"></span><div id="fig-extype">
+<p id="section-8.3-1">IANA has created a new registry titled "CXXX Certificate Extensions" under the new heading "CXXX Certificate". The columns of the registry are Value, Name, OID, DER, Comments, extensionValue, and Reference, where Value is an integer, and the other columns are text strings. Only non-negative values can be registered. For values in the interval [0, 23] the registration procedure is "IETF Review" and "Expert Review". For all other values the registration procedure is "Expert Review". The initial contents of the registry are:<a href="#section-8.3-1" class="pilcrow">¶</a></p>
+<span id="name-cxxx-certificate-extensions-2"></span><div id="fig-extype">
 <figure id="figure-5">
-          <div class="artwork art-text alignCenter" id="section-9.3-2.1">
+          <div class="artwork art-text alignCenter" id="section-8.3-2.1">
 <pre>
 +-------+-----------------------------------------------------------+
 | Value | Extension                                                |
@@ -1575,20 +1562,20 @@ Extension = ( extensionID: int, extensionValue: any ) //
 </pre>
 </div>
 <figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
-<a href="#name-cbor-certificate-extensions-2" class="selfRef">CBOR Certificate Extensions</a>
+<a href="#name-cxxx-certificate-extensions-2" class="selfRef">CXXX Certificate Extensions</a>
           </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="EKU">
-<section id="section-9.4">
-        <h3 id="name-cbor-extended-key-usages-re">
-<a href="#section-9.4" class="section-number selfRef">9.4. </a><a href="#name-cbor-extended-key-usages-re" class="section-name selfRef">CBOR Extended Key Usages Registry</a>
+<section id="section-8.4">
+        <h3 id="name-cxxx-certificate-extended-k">
+<a href="#section-8.4" class="section-number selfRef">8.4. </a><a href="#name-cxxx-certificate-extended-k" class="section-name selfRef">CXXX Certificate Extended Key Usages Registry</a>
         </h3>
-<p id="section-9.4-1">IANA has created a new registry titled "CBOR Certificate Extended Key Usages" under the new heading "CBOR Certificate". The columns of the registry are Value, Name, OID, DER, Comments, and Reference, where Value is an integer, and the other columns are text strings. For values in the interval [-24, 23] the registration procedure is "IETF Review" and "Expert Review". For all other values the registration procedure is "Expert Review". The initial contents of the registry are:<a href="#section-9.4-1" class="pilcrow">¶</a></p>
-<span id="name-cbor-certificate-extended-k"></span><div id="fig-ekutype">
+<p id="section-8.4-1">IANA has created a new registry titled "CXXX Certificate Extended Key Usages" under the new heading "CXXX Certificate". The columns of the registry are Value, Name, OID, DER, Comments, and Reference, where Value is an integer, and the other columns are text strings. For values in the interval [-24, 23] the registration procedure is "IETF Review" and "Expert Review". For all other values the registration procedure is "Expert Review". The initial contents of the registry are:<a href="#section-8.4-1" class="pilcrow">¶</a></p>
+<span id="name-cxxx-certificate-extended-ke"></span><div id="fig-ekutype">
 <figure id="figure-6">
-          <div class="artwork art-text alignCenter" id="section-9.4-2.1">
+          <div class="artwork art-text alignCenter" id="section-8.4-2.1">
 <pre>
 +-------+-----------------------------------------------------------+
 | Value | Extended Key Usage                                        |
@@ -1626,20 +1613,20 @@ Extension = ( extensionID: int, extensionValue: any ) //
 </pre>
 </div>
 <figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
-<a href="#name-cbor-certificate-extended-k" class="selfRef">CBOR Certificate Extended Key Usages</a>
+<a href="#name-cxxx-certificate-extended-ke" class="selfRef">CXXX Certificate Extended Key Usages</a>
           </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="GN">
-<section id="section-9.5">
-        <h3 id="name-cbor-certificate-general-na">
-<a href="#section-9.5" class="section-number selfRef">9.5. </a><a href="#name-cbor-certificate-general-na" class="section-name selfRef">CBOR Certificate General Names Registry</a>
+<section id="section-8.5">
+        <h3 id="name-cxxx-certificate-general-na">
+<a href="#section-8.5" class="section-number selfRef">8.5. </a><a href="#name-cxxx-certificate-general-na" class="section-name selfRef">CXXX Certificate General Names Registry</a>
         </h3>
-<p id="section-9.5-1">IANA has created a new registry titled "CBOR Certificate General Names" under the new heading "CBOR Certificate". The columns of the registry are Value, General Name, and Reference, where Value is an integer, and the other columns are text strings. For values in the interval [-24, 23] the registration procedure is "IETF Review" and "Expert Review". For all other values the registration procedure is "Expert Review". The initial contents of the registry are:<a href="#section-9.5-1" class="pilcrow">¶</a></p>
-<span id="name-cbor-certificate-general-nam"></span><div id="fig-gn">
+<p id="section-8.5-1">IANA has created a new registry titled "CXXX Certificate General Names" under the new heading "CXXX Certificate". The columns of the registry are Value, General Name, and Reference, where Value is an integer, and the other columns are text strings. For values in the interval [-24, 23] the registration procedure is "IETF Review" and "Expert Review". For all other values the registration procedure is "Expert Review". The initial contents of the registry are:<a href="#section-8.5-1" class="pilcrow">¶</a></p>
+<span id="name-cxxx-certificate-general-nam"></span><div id="fig-gn">
 <figure id="figure-7">
-          <div class="artwork art-text alignCenter" id="section-9.5-2.1">
+          <div class="artwork art-text alignCenter" id="section-8.5-2.1">
 <pre>
 +-------+-----------------------------------------------------------+
 | Value | General Names                                             |
@@ -1679,20 +1666,20 @@ Extension = ( extensionID: int, extensionValue: any ) //
 </pre>
 </div>
 <figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
-<a href="#name-cbor-certificate-general-nam" class="selfRef">CBOR Certificate General Names</a>
+<a href="#name-cxxx-certificate-general-nam" class="selfRef">CXXX Certificate General Names</a>
           </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="sigalg">
-<section id="section-9.6">
-        <h3 id="name-cbor-certificate-signature-">
-<a href="#section-9.6" class="section-number selfRef">9.6. </a><a href="#name-cbor-certificate-signature-" class="section-name selfRef">CBOR Certificate Signature Algorithms Registry</a>
+<section id="section-8.6">
+        <h3 id="name-cxxx-certificate-signature-">
+<a href="#section-8.6" class="section-number selfRef">8.6. </a><a href="#name-cxxx-certificate-signature-" class="section-name selfRef">CXXX Certificate Signature Algorithms Registry</a>
         </h3>
-<p id="section-9.6-1">IANA has created a new registry titled "CBOR Certificate Signature Algorithms" under the new heading "CBOR Certificate". The columns of the registry are Value, Name, OID, Parameters, DER, Comments, and Reference, where Value is an integer, and the other columns are text strings. For values in the interval [-24, 23] the registration procedure is "IETF Review" and "Expert Review". For all other values the registration procedure is "Expert Review". The initial contents of the registry are:<a href="#section-9.6-1" class="pilcrow">¶</a></p>
-<span id="name-cbor-certificate-signature-a"></span><div id="fig-sigalgs">
+<p id="section-8.6-1">IANA has created a new registry titled "CXXX Certificate Signature Algorithms" under the new heading "CXXX Certificate". The columns of the registry are Value, Name, OID, Parameters, DER, Comments, and Reference, where Value is an integer, and the other columns are text strings. For values in the interval [-24, 23] the registration procedure is "IETF Review" and "Expert Review". For all other values the registration procedure is "Expert Review". The initial contents of the registry are:<a href="#section-8.6-1" class="pilcrow">¶</a></p>
+<span id="name-cxxx-certificate-signature-a"></span><div id="fig-sigalgs">
 <figure id="figure-8">
-          <div class="artwork art-text alignCenter" id="section-9.6-2.1">
+          <div class="artwork art-text alignCenter" id="section-8.6-2.1">
 <pre>
 +-------+-----------------------------------------------------------+
 | Value | X.509 Signature Algorithms                                |
@@ -1832,20 +1819,20 @@ Extension = ( extensionID: int, extensionValue: any ) //
 </pre>
 </div>
 <figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
-<a href="#name-cbor-certificate-signature-a" class="selfRef">CBOR Certificate Signature Algorithms</a>
+<a href="#name-cxxx-certificate-signature-a" class="selfRef">CXXX Certificate Signature Algorithms</a>
           </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="pkalg">
-<section id="section-9.7">
-        <h3 id="name-cbor-certificate-public-key">
-<a href="#section-9.7" class="section-number selfRef">9.7. </a><a href="#name-cbor-certificate-public-key" class="section-name selfRef">CBOR Certificate Public Key Algorithms Registry</a>
+<section id="section-8.7">
+        <h3 id="name-cxxx-certificate-public-key">
+<a href="#section-8.7" class="section-number selfRef">8.7. </a><a href="#name-cxxx-certificate-public-key" class="section-name selfRef">CXXX Certificate Public Key Algorithms Registry</a>
         </h3>
-<p id="section-9.7-1">IANA has created a new registry titled "CBOR Certificate Public Key Algorithms" under the new heading "CBOR Certificate". The columns of the registry are Value, Name, OID, Parameters, DER, Comments, and Reference, where Value is an integer, and the other columns are text strings. For values in the interval [-24, 23] the registration procedure is "IETF Review" and "Expert Review". For all other values the registration procedure is "Expert Review". T The initial contents of the registry are:<a href="#section-9.7-1" class="pilcrow">¶</a></p>
-<span id="name-cbor-certificate-public-key-"></span><div id="fig-pkalgs">
+<p id="section-8.7-1">IANA has created a new registry titled "CXXX Certificate Public Key Algorithms" under the new heading "CXXX Certificate". The columns of the registry are Value, Name, OID, Parameters, DER, Comments, and Reference, where Value is an integer, and the other columns are text strings. For values in the interval [-24, 23] the registration procedure is "IETF Review" and "Expert Review". For all other values the registration procedure is "Expert Review". T The initial contents of the registry are:<a href="#section-8.7-1" class="pilcrow">¶</a></p>
+<span id="name-cxxx-certificate-public-key-"></span><div id="fig-pkalgs">
 <figure id="figure-9">
-          <div class="artwork art-text alignCenter" id="section-9.7-2.1">
+          <div class="artwork art-text alignCenter" id="section-8.7-2.1">
 <pre>
 +-------+-----------------------------------------------------------+
 | Value | X.509 Public Key Algorithms                               |
@@ -1922,92 +1909,92 @@ Extension = ( extensionID: int, extensionValue: any ) //
 </pre>
 </div>
 <figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
-<a href="#name-cbor-certificate-public-key-" class="selfRef">CBOR Certificate Public Key Algorithms</a>
+<a href="#name-cxxx-certificate-public-key-" class="selfRef">CXXX Certificate Public Key Algorithms</a>
           </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="cose">
-<section id="section-9.8">
+<section id="section-8.8">
         <h3 id="name-cose-header-parameters-regi">
-<a href="#section-9.8" class="section-number selfRef">9.8. </a><a href="#name-cose-header-parameters-regi" class="section-name selfRef">COSE Header Parameters Registry</a>
+<a href="#section-8.8" class="section-number selfRef">8.8. </a><a href="#name-cose-header-parameters-regi" class="section-name selfRef">COSE Header Parameters Registry</a>
         </h3>
-<p id="section-9.8-1">EDITORS NOTE: Should x5u refer to a bag or a chain? The text should be moved a section and not be in the IANA Section.<a href="#section-9.8-1" class="pilcrow">¶</a></p>
-<p id="section-9.8-2">This document registers the following entries in the "COSE Header Parameters" registry under the "CBOR Object Signing and Encryption (COSE)" heading. The formatting and processing for c5b, c5c, and c5t, and c5u are similar to x5bag, x5chain, x5t, x5u defined in <span>[<a href="#I-D.ietf-cose-x509" class="xref">I-D.ietf-cose-x509</a>]</span> except that the certificates are CBOR encoded instead of DER encoded, uses a COSE_C5 structure instead of COSE_X509, and that c5t MUST refer to an end-entity certificate. c5u provides an alternative way to identify an untrusted certificate bag/chain by reference with a URI. The content is a COSE_C5 item served with the application/cbor content format. The COSE_C5 structure used in c5b, c5c, and c5u is defined as:<a href="#section-9.8-2" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft art-CDDL" id="section-9.8-3">
+<p id="section-8.8-1">EDITORS NOTE: Should x5u refer to a bag or a chain? The text should be moved a section and not be in the IANA Section.<a href="#section-8.8-1" class="pilcrow">¶</a></p>
+<p id="section-8.8-2">This document registers the following entries in the "COSE Header Parameters" registry under the "CBOR Object Signing and Encryption (COSE)" heading. The formatting and processing for c5b, c5c, and c5t, and c5u are similar to x5bag, x5chain, x5t, x5u defined in <span>[<a href="#I-D.ietf-cose-x509" class="xref">I-D.ietf-cose-x509</a>]</span> except that the certificates are CBOR encoded instead of DER encoded, uses a COSE_C5 structure instead of COSE_X509, and that c5t MUST refer to an end-entity certificate. c5u provides an alternative way to identify an untrusted certificate bag/chain by reference with a URI. The content is a COSE_C5 item served with the application/cbor content format. The COSE_C5 structure used in c5b, c5c, and c5u is defined as:<a href="#section-8.8-2" class="pilcrow">¶</a></p>
+<div class="artwork art-text alignLeft art-CDDL" id="section-8.8-3">
 <pre>
 COSE_C5 = [ + CBORCertificate ]
-</pre><a href="#section-9.8-3" class="pilcrow">¶</a>
+</pre><a href="#section-8.8-3" class="pilcrow">¶</a>
 </div>
-<p id="section-9.8-4">As the contents of c5bag, c5chain, c5t, and c5u are untrusted input, the header parameters can be in either the protected or unprotected header bucket. The trust mechanism MUST process any certificates in the c5b, c5c, and c5u parameters as untrusted input. The presence of a self-signed certificate in the parameter MUST NOT cause the update of the set of trust anchors without some out-of-band confirmation.<a href="#section-9.8-4" class="pilcrow">¶</a></p>
-<p id="section-9.8-5">Note that certificates can also be identified with a 'kid' header parameter by storing 'kid' and the associated bag or chain in a dictionary.<a href="#section-9.8-5" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-9.8-6">
+<p id="section-8.8-4">As the contents of c5bag, c5chain, c5t, and c5u are untrusted input, the header parameters can be in either the protected or unprotected header bucket. The trust mechanism MUST process any certificates in the c5b, c5c, and c5u parameters as untrusted input. The presence of a self-signed certificate in the parameter MUST NOT cause the update of the set of trust anchors without some out-of-band confirmation.<a href="#section-8.8-4" class="pilcrow">¶</a></p>
+<p id="section-8.8-5">Note that certificates can also be identified with a 'kid' header parameter by storing 'kid' and the associated bag or chain in a dictionary.<a href="#section-8.8-5" class="pilcrow">¶</a></p>
+<div class="artwork art-text alignLeft" id="section-8.8-6">
 <pre>
 +-----------+-------+----------------+------------------------------+
 | Name      | Label | Value Type     | Description                  |
 +===========+=======+================+==============================+
-| c5b       |  TBD1 | COSE_C5        | An unordered bag of CBOR     |
+| c5b       |  TBD1 | COSE_C5        | An unordered bag of CXXX     |
 |           |       |                | certificates                 |
 +-----------+-------+----------------+------------------------------+
-| c5c       |  TBD2 | COSE_C5        | An ordered chain of CBOR     |
+| c5c       |  TBD2 | COSE_C5        | An ordered chain of CXXX     |
 |           |       |                | certificates                 |
 +-----------+-------+----------------+------------------------------+
-| c5t       |  TBD3 | COSE_CertHash  | Hash of a CBOR certificate   |
+| c5t       |  TBD3 | COSE_CertHash  | Hash of a CXXX certificate   |
 +-----------+-------+----------------+------------------------------+
 | c5u       |  TBD4 | uri            | URI pointing to a COSE_C5    |
 |           |       |                | containing a ordered chain   |
 |           |       |                | of certificates              |
 +-----------+-------+----------------+------------------------------+
-</pre><a href="#section-9.8-6" class="pilcrow">¶</a>
+</pre><a href="#section-8.8-6" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 <div id="tls">
-<section id="section-9.9">
+<section id="section-8.9">
         <h3 id="name-tls-certificate-types-regis">
-<a href="#section-9.9" class="section-number selfRef">9.9. </a><a href="#name-tls-certificate-types-regis" class="section-name selfRef">TLS Certificate Types Registry</a>
+<a href="#section-8.9" class="section-number selfRef">8.9. </a><a href="#name-tls-certificate-types-regis" class="section-name selfRef">TLS Certificate Types Registry</a>
         </h3>
-<p id="section-9.9-1">This document registers the following entry in the "TLS Certificate Types" registry under the "Transport Layer Security (TLS) Extensions" heading. The new certificate type can be used with addtional TLS certificate compression <span>[<a href="#RFC8879" class="xref">RFC8879</a>]</span>.<a href="#section-9.9-1" class="pilcrow">¶</a></p>
-<p id="section-9.9-2">EDITOR'S NOTE: The TLS registrations should be discussed and approved by the TLS WG at a later stage. When COSE WG has adopted work on CBOR certificates, it could perhaps be presented in the TLS WG. The TLS WG might e.g. want a separate draft in the TLS WG.<a href="#section-9.9-2" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-9.9-3">
+<p id="section-8.9-1">This document registers the following entry in the "TLS Certificate Types" registry under the "Transport Layer Security (TLS) Extensions" heading. The new certificate type can be used with addtional TLS certificate compression <span>[<a href="#RFC8879" class="xref">RFC8879</a>]</span>.<a href="#section-8.9-1" class="pilcrow">¶</a></p>
+<p id="section-8.9-2">EDITOR'S NOTE: The TLS registrations should be discussed and approved by the TLS WG at a later stage. When COSE WG has adopted work on CXXX certificates, it could perhaps be presented in the TLS WG. The TLS WG might e.g. want a separate draft in the TLS WG.<a href="#section-8.9-2" class="pilcrow">¶</a></p>
+<div class="artwork art-text alignLeft" id="section-8.9-3">
 <pre>
 +-------+------------------+-------------+--------------------------+
 | Value | Name             | Recommended | Comment                  |
 +=======+==================+=============+==========================+
-|  TBD5 | CBOR Certificate |           Y |                          |
+|  TBD5 | CXXX Certificate |           Y |                          |
 +-------+------------------+-------------+--------------------------+
-</pre><a href="#section-9.9-3" class="pilcrow">¶</a>
+</pre><a href="#section-8.9-3" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 <div id="tags">
-<section id="section-9.10">
+<section id="section-8.10">
         <h3 id="name-cbor-tags-registry">
-<a href="#section-9.10" class="section-number selfRef">9.10. </a><a href="#name-cbor-tags-registry" class="section-name selfRef">CBOR Tags Registry</a>
+<a href="#section-8.10" class="section-number selfRef">8.10. </a><a href="#name-cbor-tags-registry" class="section-name selfRef">CBOR Tags Registry</a>
         </h3>
-<p id="section-9.10-1">This document registers the following entries in the "CBOR Tags" registry under the "Concise Binary Object Representation (CBOR) Tags" heading.<a href="#section-9.10-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-9.10-2">
+<p id="section-8.10-1">This document registers the following entries in the "CBOR Tags" registry under the "Concise Binary Object Representation (CBOR) Tags" heading.<a href="#section-8.10-1" class="pilcrow">¶</a></p>
+<div class="artwork art-text alignLeft" id="section-8.10-2">
 <pre>
 +------+------------------------------------------------------------+
 |  Tag | X.509 Public Key Algorithms                                |
 +======+============================================================+
 | TDB6 | Data Item: COSE_C5                                         |
-|      | Semantics: An ordered chain of CBOR certificates           |
+|      | Semantics: An ordered chain of CXXX certificates           |
 |      | Reference: This document                                   |
 +------+------------------------------------------------------------+
-</pre><a href="#section-9.10-2" class="pilcrow">¶</a>
+</pre><a href="#section-8.10-2" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 </section>
 </div>
-<section id="section-10">
+<section id="section-9">
       <h2 id="name-references">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
-<section id="section-10.1">
+<section id="section-9.1">
         <h3 id="name-normative-references">
-<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="I-D.ietf-cbor-tags-oid">[I-D.ietf-cbor-tags-oid]</dt>
@@ -2056,9 +2043,9 @@ COSE_C5 = [ + CBORCertificate ]
 <dd class="break"></dd>
 </dl>
 </section>
-<section id="section-10.2">
+<section id="section-9.2">
         <h3 id="name-informative-references">
-<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="CAB-Baseline">[CAB-Baseline]</dt>
@@ -2130,8 +2117,8 @@ COSE_C5 = [ + CBORCertificate ]
 </section>
 <div id="appA">
 <section id="section-appendix.a">
-      <h2 id="name-example-cbor-certificates">
-<a href="#section-appendix.a" class="section-number selfRef">Appendix A. </a><a href="#name-example-cbor-certificates" class="section-name selfRef">Example CBOR Certificates</a>
+      <h2 id="name-example-cxxx-certificates">
+<a href="#section-appendix.a" class="section-number selfRef">Appendix A. </a><a href="#name-example-cxxx-certificates" class="section-name selfRef">Example CXXX Certificates</a>
       </h2>
 <div id="example-rfc-7925-profiled-x509-certificate">
 <section id="section-a.1">
@@ -2192,10 +2179,10 @@ E7 F5 00 DC 74 7A 65 4C EC 6C FA 6F 03 72 76 E1 4E 52 ED 07 FC 16 29
 3B 7F A6 26 40 67 4F C0 35 4F A0 56 DB AE A6
 </pre><a href="#section-a.1-4" class="pilcrow">¶</a>
 </div>
-<div id="example-cbor-certificate-encoding">
+<div id="example-cxxx-certificate-encoding">
 <section id="section-a.1.1">
-          <h3 id="name-example-cbor-certificate-en">
-<a href="#section-a.1.1" class="section-number selfRef">A.1.1. </a><a href="#name-example-cbor-certificate-en" class="section-name selfRef">Example CBOR Certificate Encoding</a>
+          <h3 id="name-example-cxxx-certificate-en">
+<a href="#section-a.1.1" class="section-number selfRef">A.1.1. </a><a href="#name-example-cxxx-certificate-en" class="section-name selfRef">Example CXXX Certificate Encoding</a>
           </h3>
 <p id="section-a.1.1-1">The CBOR encoding of the same X.509 certificate is shown below in CBOR diagnostic format.<a href="#section-a.1.1-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-a.1.1-2">
@@ -2240,12 +2227,12 @@ E7 F5 00 DC 74 7A 65 4C EC 6C FA 6F 03 72 76 E1 4E 52 ED 07 FC 16 29
 </div>
 </section>
 </div>
-<div id="example-natively-signed-cbor-certificate">
+<div id="example-natively-signed-cxxx-certificate">
 <section id="section-a.1.2">
-          <h3 id="name-example-natively-signed-cbo">
-<a href="#section-a.1.2" class="section-number selfRef">A.1.2. </a><a href="#name-example-natively-signed-cbo" class="section-name selfRef">Example: Natively Signed CBOR Certificate</a>
+          <h3 id="name-example-natively-signed-cxx">
+<a href="#section-a.1.2" class="section-number selfRef">A.1.2. </a><a href="#name-example-natively-signed-cxx" class="section-name selfRef">Example: Natively Signed CXXX Certificate</a>
           </h3>
-<p id="section-a.1.2-1">The corresponding natively signed CBOR certificate in CBOR diagnostic format is identical, except for cborCertificateType and signatureValue.<a href="#section-a.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-a.1.2-1">The corresponding natively signed CXXX certificate in CBOR diagnostic format is identical, except for cborCertificateType and signatureValue.<a href="#section-a.1.2-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-a.1.2-2">
 <pre>
 /This defines a CBOR Sequence (RFC 8742):/
@@ -2387,10 +2374,10 @@ ea 02 21 00 b5 c0 6c c4 58 54 fa 30 b2 82 88 b1 d3 bb 9a 66 61 ed 50
 31 72 5b 1a 82 02 e0 da 5b 59 f9 54 02
 </pre><a href="#section-a.3-2" class="pilcrow">¶</a>
 </div>
-<div id="example-cbor-certificate-encoding-1">
+<div id="example-cxxx-certificate-encoding-1">
 <section id="section-a.3.1">
-          <h3 id="name-example-cbor-certificate-enc">
-<a href="#section-a.3.1" class="section-number selfRef">A.3.1. </a><a href="#name-example-cbor-certificate-enc" class="section-name selfRef">Example CBOR Certificate Encoding</a>
+          <h3 id="name-example-cxxx-certificate-enc">
+<a href="#section-a.3.1" class="section-number selfRef">A.3.1. </a><a href="#name-example-cxxx-certificate-enc" class="section-name selfRef">Example CXXX Certificate Encoding</a>
           </h3>
 <p id="section-a.3.1-1">The CBOR encoding of the first X.509 certificate is shown below in CBOR diagnostic format.<a href="#section-a.3.1-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-a.3.1-2">
@@ -2518,10 +2505,10 @@ fd 30 3c f5 52 f4 05 34 a0 8a 3e 19 41 58 c8 a8 e0 51 71 84 09 15 ae
 ec a5 77 75 fa 18 f7 d5 77 d5 31 cc c7 2d
 </pre><a href="#section-a.4-2" class="pilcrow">¶</a>
 </div>
-<div id="example-cbor-certificate-encoding-2">
+<div id="example-cxxx-certificate-encoding-2">
 <section id="section-a.4.1">
-          <h3 id="name-example-cbor-certificate-enco">
-<a href="#section-a.4.1" class="section-number selfRef">A.4.1. </a><a href="#name-example-cbor-certificate-enco" class="section-name selfRef">Example CBOR Certificate Encoding</a>
+          <h3 id="name-example-cxxx-certificate-enco">
+<a href="#section-a.4.1" class="section-number selfRef">A.4.1. </a><a href="#name-example-cxxx-certificate-enco" class="section-name selfRef">Example CXXX Certificate Encoding</a>
           </h3>
 <p id="section-a.4.1-1">The CBOR encoding of the first X.509 certificate is shown below in CBOR diagnostic format.<a href="#section-a.4.1-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-a.4.1-2">
