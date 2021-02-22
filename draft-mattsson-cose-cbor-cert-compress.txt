@@ -13,7 +13,7 @@ Expires: 26 August 2021                                      G. Selander
                                                         22 February 2021
 
 
-        CBOR Encoding of X.509 Certificates (CXXX Certificates)
+          CBOR Encoded X.509 Certificates (CXXX Certificates)
              draft-mattsson-cose-cbor-cert-compress-latest
 
 Abstract
